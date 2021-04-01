@@ -14,7 +14,7 @@ const BlogPosts = ({blogs}) => {
           <div className="blog-img-2">
             <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
               <img
-                src={process.env.PUBLIC_URL + "/assets/img/blog/blog-9.jpg"}
+                src={process.env.PUBLIC_URL + blog.image}
                 alt=""
               />
             </Link>
@@ -36,17 +36,16 @@ const BlogPosts = ({blogs}) => {
               </Link>
             </h4>
             <p>
-              Aenean sollicitudin, lorem quis on endum uctor nisi elitod the
-              cona sequat ipsum, necas sagittis sem natoque nibh id penatibus
+              {blog.description}
             </p>
             <div className="blog-share-comment">
               <div className="blog-btn-2">
                 <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
-                  read more
+                  Đọc tiếp
                 </Link>
               </div>
               <div className="blog-share">
-                <span>share :</span>
+                <span>Chia sẽ :</span>
                 <div className="share-social">
                   <ul>
                     <li>

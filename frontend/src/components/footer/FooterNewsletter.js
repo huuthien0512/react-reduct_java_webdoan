@@ -16,12 +16,12 @@ const FooterNewsletter = ({
       } ${widgetColorClass ? widgetColorClass : ""}`}
     >
       <div className="footer-title">
-        <h3>SUBSCRIBE</h3>
+        <h3>Đăng Ký Nhận Thông Tin</h3>
       </div>
       <div className={`subscribe-style ${colorClass ? colorClass : ""}`}>
-        <p>Nhận thông tin cập nhật qua email về sản phẩm mới nhất của cửa hàng chúng tôi và các ưu đãi đặc biệt.</p>
+        <p>Nhận thông tin cập nhật qua email về đồ ăn mới nhất của cửa hàng chúng tôi và các ưu đãi đặc biệt.</p>
         {/* subscribe email */}
-        <SubscribeEmail mailchimpUrl="//devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef" />
+        <SubscribeEmail mailchimpUrl="//facebook.com" />
       </div>
     </div>
   );

@@ -54,8 +54,8 @@ const Shop = ({location, products}) => {
                 <meta name="description" content="Trang bày đồ ăn." />
             </MetaTags>
 
-            <BreadcrumbsItem to={process.env.PUBLIC_URL + '/'}>Home</BreadcrumbsItem>
-            <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Shop</BreadcrumbsItem>
+            <BreadcrumbsItem to={process.env.PUBLIC_URL + '/'}>Trang Chủ</BreadcrumbsItem>
+            <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>Cửa Hàng</BreadcrumbsItem>
 
             <Layout headerTop="visible">
                 {/* breadcrumb */}

@@ -11,10 +11,10 @@ const Home = () => {
     <Fragment>
       
       <MetaTags>
-        <title>H20 Home</title>
+        <title>Cửa Hàng H20</title>
         <meta
           name="description"
-          content="Cửa hàng đồ công nghệ uy tín nhất thế giới."
+          content="Cửa hàng đồ ăn ngon nhất thế giới."
         />
       </MetaTags>
       <Layout

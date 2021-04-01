@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "image": "/assets/img/banner/banner-1.jpg",
-    "title": "Watches",
-    "subtitle": "Starting at",
-    "price": "$99.00",
+    "image": "/assets/img/foods/comgaxoimo.jpeg",
+    "title": "Cơm gà xối mỡ",
+    "subtitle": "Giá: ",
+    "price": "55.000 đ",
     "link": "/shop"
   },
   {
     "id": 2,
-    "image": "/assets/img/banner/banner-2.jpg",
-    "title": "Plo Bag",
-    "subtitle": "Starting at",
-    "price": "$79.00",
+    "image": "/assets/img/foods/comtam.jpg",
+    "title": "Cơm tấm",
+    "subtitle": "Giá: ",
+    "price": "50.000 đ",
     "link": "/shop"
   },
   {
     "id": 3,
-    "image": "/assets/img/banner/banner-3.jpg",
-    "title": "Sunglass",
-    "subtitle": "Starting at",
-    "price": "$29.00",
+    "image": "/assets/img/foods/trasua.jpeg",
+    "title": "Trà Sữa",
+    "subtitle": "Giá: ",
+    "price": "20.000 đ",
     "link": "/shop"
   }
 ]

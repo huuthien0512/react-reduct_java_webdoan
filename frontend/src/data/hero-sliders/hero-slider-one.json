@@ -1,16 +1,16 @@
 [
   {
     "id": 1,
-    "title": "Smart Products",
-    "subtitle": "Winter Offer 2020 Collection",
+    "title": "Cơm Tấm",
+    "subtitle": "Cơm Sườn Chua Ngọt",
     "image": "/assets/img/slider/single-slide-hm1-2.png",
     "url": "/shop"
   },
   {
     "id": 2,
-    "title": "Smart Products",
-    "subtitle": "Summer Offer 2020 Collection",
-    "image": "/assets/img/slider/single-slide-1.png",
+    "title": "Cơm Tấm",
+    "subtitle": "Cơm Sườn Chua Ngọt",
+    "image": "/assets/img/slider/single-slide-1.jpg",
     "url": "/shop"
   }
 ]

@@ -103,18 +103,15 @@ const FooterOne = ({
               <div className="footer-list">
                 <ul>
                   <li>
-                    <Link to="foody.vn">Foody</Link>
+                    <a href="http://foody.vn">Foody</a>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>
-                      Support Policy
-                    </Link>
+                    <a href="https://order.capichiapp.com">
+                      Capichiapp
+                    </a>
                   </li>
                   <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>Size guide</Link>
-                  </li>
-                  <li>
-                    <Link to={process.env.PUBLIC_URL + "#/"}>FAQs</Link>
+                    <a href="https://www.grab.com/vn/en/food/">Grab food</a>
                   </li>
                 </ul>
               </div>
@@ -133,7 +130,7 @@ const FooterOne = ({
               }`}
             >
               <div className="footer-title">
-                <h3>FOLLOW US</h3>
+                <h3>Theo dõi chúng tôi</h3>
               </div>
               <div className="footer-list">
                 <ul>

@@ -1,7 +1,7 @@
 /*----- 3. Slider style  ------*/
 
 .slider-height-1 {
-  height: 750px;
+  height: 350px;
   @media #{$xl-layout} {
     height: 650px;
   }
@@ -45,7 +45,7 @@
 
 .single-slider {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   .slider-content {
     padding: 183px 0 0;
     @media #{$xl-layout} {
@@ -1520,7 +1520,7 @@
     height: 520px;
   }
   @media #{$md-layout} {
-    height: 450px;
+    height: 150px;
   }
   @media #{$xs-layout} {
     height: auto;

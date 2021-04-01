@@ -42,9 +42,9 @@ const LoginRegister = ({ location, login, register, userLogin, history}) => {
           content="Trang đăng nhập / đăng ký."
         />
       </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Trang Chủ</BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
-        Login Register
+        Đăng Nhập Đăng Ký
       </BreadcrumbsItem>
       <Layout headerTop="visible">
         {/* breadcrumb */}

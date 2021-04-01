@@ -26,7 +26,7 @@ const HeaderTop = ({
       />
       <div className="header-offer">
         <p>
-          Free delivery on order over{" "}
+          Miễn phí giao hàng với đơn hàng trên{" "}
           <span>
             {currency.currencySymbol + (200 * currency.currencyRate).toFixed(2)}
           </span>

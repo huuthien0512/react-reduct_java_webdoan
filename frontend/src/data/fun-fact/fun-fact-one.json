@@ -3,7 +3,7 @@
     "id": "1",
     "iconClass": "pe-7s-portfolio",
     "countNum": 360,
-    "title": "project done"
+    "title": "Dự Án Đã Hoàn Thành"
   },
   {
     "id": "2",
@@ -15,12 +15,12 @@
     "id": "3",
     "iconClass": "pe-7s-light",
     "countNum": 100,
-    "title": "branding"
+    "title": "Xây Dựng Thương Hiệu"
   },
   {
     "id": "4",
     "iconClass": "pe-7s-smile",
-    "countNum": 420,
-    "title": "happy clients"
+    "countNum": 10000,
+    "title": "Khách Hàng Vui Vẻ"
   }
 ]

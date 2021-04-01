@@ -51,16 +51,16 @@ const IconGroup = ({
         <div className="account-dropdown">
           <ul>
             <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>Login</Link>
+              <Link to={process.env.PUBLIC_URL + "/login-register"}>Đăng Nhập</Link>
             </li>
             <li>
               <Link to={process.env.PUBLIC_URL + "/login-register"}>
-                Register
+                Đăng Ký
               </Link>
             </li>
             <li>
               <Link to={process.env.PUBLIC_URL + "/my-account"}>
-                my account
+                Tài Khoản
               </Link>
             </li>
           </ul>

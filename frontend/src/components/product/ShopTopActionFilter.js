@@ -24,7 +24,7 @@ const ShopTopActionFilter = ({
             </select>
           </div>
           <p>
-            Showing {sortedProductCount} of {productCount} result
+            Hiển thị {sortedProductCount} của {productCount} kết quả
           </p>
         </div>
 
