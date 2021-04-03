@@ -115,18 +115,15 @@ const Wishlist = ({
                                   {discountedPrice !== null ? (
                                     <Fragment>
                                       <span className="amount old">
-                                        {currency.currencySymbol +
-                                          finalProductPrice}
+                                        {finalProductPrice*1000 + " " + currency.currencySymbol}
                                       </span>
                                       <span className="amount">
-                                        {currency.currencySymbol +
-                                          finalDiscountedPrice}
+                                        {finalDiscountedPrice*1000 + " " + currency.currencySymbol}
                                       </span>
                                     </Fragment>
                                   ) : (
                                     <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
+                                      {finalProductPrice*1000 + " " + currency.currencySymbol}
                                     </span>
                                   )}
                                 </td>
@@ -228,8 +225,8 @@ const Wishlist = ({
                     </div>
                     <div className="item-empty-area__text">
                       No items found in wishlist <br />{" "}
-                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-                        Add Items
+                      <Link to={process.env.PUBLIC_URL + "/shop"}>
+                       Thêm Sản Phẩm
                       </Link>
                     </div>
                   </div>

@@ -116,37 +116,21 @@ const Cart = ({
                                   >
                                     {cartItem.name}
                                   </Link>
-                                  {cartItem.selectedProductColor &&
-                                  cartItem.selectedProductSize ? (
-                                    <div className="cart-item-variation">
-                                      <span>
-                                        Color: {cartItem.selectedProductColor}
-                                      </span>
-                                      <span>
-                                        Size: {cartItem.selectedProductSize}
-                                      </span>
-                                    </div>
-                                  ) : (
-                                    ""
-                                  )}
                                 </td>
 
                                 <td className="product-price-cart">
                                   {discountedPrice !== null ? (
                                     <Fragment>
                                       <span className="amount old">
-                                        {currency.currencySymbol +
-                                          finalProductPrice}
+                                        {finalProductPrice*1000 + " " + currency.currencySymbol}
                                       </span>
                                       <span className="amount">
-                                        {currency.currencySymbol +
-                                          finalDiscountedPrice}
+                                        {finalDiscountedPrice*1000 + " " + currency.currencySymbol}
                                       </span>
                                     </Fragment>
                                   ) : (
                                     <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
+                                      {finalProductPrice*1000 + " " + currency.currencySymbol}
                                     </span>
                                   )}
                                 </td>
@@ -181,9 +165,7 @@ const Cart = ({
                                         cartItem.quantity &&
                                         cartItem.quantity >=
                                           cartItemStock(
-                                            cartItem,
-                                            cartItem.selectedProductColor,
-                                            cartItem.selectedProductSize
+                                            cartItem
                                           )
                                       }
                                     >
@@ -193,14 +175,15 @@ const Cart = ({
                                 </td>
                                 <td className="product-subtotal">
                                   {discountedPrice !== null
-                                    ? currency.currencySymbol +
+                                    ? 
                                       (
                                         finalDiscountedPrice * cartItem.quantity
-                                      ).toFixed(2)
-                                    : currency.currencySymbol +
+                                      ).toFixed(2)*1000
+                                      + " " + currency.currencySymbol
+                                    : 
                                       (
                                         finalProductPrice * cartItem.quantity
-                                      ).toFixed(2)}
+                                      ).toFixed(2)*1000 + " " + currency.currencySymbol} 
                                 </td>
 
                                 <td className="product-remove">
@@ -316,14 +299,14 @@ const Cart = ({
                       <h5>
                         Tổng Sản Phẩm{" "}
                         <span>
-                          {currency.currencySymbol + cartTotalPrice.toFixed(2)}
+                          {cartTotalPrice.toFixed(2)*1000 + " " + currency.currencySymbol}
                         </span>
                       </h5>
 
                       <h4 className="grand-totall-title">
                         Tổng Cộng{" "}
                         <span>
-                          {currency.currencySymbol + cartTotalPrice.toFixed(2)}
+                          {cartTotalPrice.toFixed(2)*1000 + " " + currency.currencySymbol}
                         </span>
                       </h4>
                       <Link to={process.env.PUBLIC_URL + "/checkout"}>

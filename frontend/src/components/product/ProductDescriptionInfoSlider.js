@@ -22,14 +22,8 @@ const ProductDescriptionInfoSlider = ({
   addToWishlist,
   addToCompare
 }) => {
-  const [selectedProductColor, setSelectedProductColor] = useState(
-    product.variation ? product.variation[0].color : ""
-  );
-  const [selectedProductSize, setSelectedProductSize] = useState(
-    product.variation ? product.variation[0].size[0].name : ""
-  );
   const [productStock, setProductStock] = useState(
-    product ? product.qty : 0
+    product ? product.quantity : 0
   );
   const [quantityCount, setQuantityCount] = useState(1);
 
@@ -44,13 +38,13 @@ const ProductDescriptionInfoSlider = ({
       <div className="product-details-price justify-content-center">
         {discountedPrice !== null ? (
           <Fragment>
-            <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "}
+            <span>{finalDiscountedPrice*1000 + " " + currency.currencySymbol}</span>{" "}
             <span className="old">
-              {currency.currencySymbol + finalProductPrice}
+              {finalProductPrice*1000 + " " + currency.currencySymbol}
             </span>
           </Fragment>
         ) : (
-          <span>{currency.currencySymbol + finalProductPrice} </span>
+          <span>{finalProductPrice*1000 + " " + currency.currencySymbol} </span>
         )}
       </div>
       {product.rating && product.rating > 0 ? (
@@ -63,78 +57,8 @@ const ProductDescriptionInfoSlider = ({
         ""
       )}
       <div className="pro-details-list">
-        <p>{product.shortDescription}</p>
+        <p>{product.description}</p>
       </div>
-
-      {product ? (
-        <div className="pro-details-size-color justify-content-center">
-          <div className="pro-details-color-wrap">
-            <span>Color</span>
-            <div className="pro-details-color-content">
-              {product.map((single, key) => {
-                return (
-                  <label
-                    className={`pro-details-color-content--single ${single.color}`}
-                    key={key}
-                  >
-                    <input
-                      type="radio"
-                      value={single.color}
-                      name="product-color"
-                      checked={
-                        single.color === selectedProductColor ? "checked" : ""
-                      }
-                      onChange={() => {
-                        setSelectedProductColor(single.color);
-                        setSelectedProductSize(single.size[0].name);
-                        setProductStock(single.size[0].stock);
-                        setQuantityCount(1);
-                      }}
-                    />
-                    <span className="checkmark"></span>
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-          <div className="pro-details-size">
-            <span>Size</span>
-            <div className="pro-details-size-content">
-              {product &&
-                product.map(single => {
-                  return single.color === selectedProductColor
-                    ? single.size.map((singleSize, key) => {
-                        return (
-                          <label
-                            className={`pro-details-size-content--single`}
-                            key={key}
-                          >
-                            <input
-                              type="radio"
-                              value={singleSize.name}
-                              checked={
-                                singleSize.name === selectedProductSize
-                                  ? "checked"
-                                  : ""
-                              }
-                              onChange={() => {
-                                setSelectedProductSize(singleSize.name);
-                                setProductStock(singleSize.stock);
-                                setQuantityCount(1);
-                              }}
-                            />
-                            <span className="size-name">{singleSize.name}</span>
-                          </label>
-                        );
-                      })
-                    : "";
-                })}
-            </div>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
       {product.affiliateLink ? (
         <div className="pro-details-quality justify-content-center">
           <div className="pro-details-cart btn-hover ml-0">

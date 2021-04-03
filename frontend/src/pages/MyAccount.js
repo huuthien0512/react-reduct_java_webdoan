@@ -59,7 +59,7 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | My Account</title>
+        <title>H2O | Tài Khoản Của Tôi</title>
         <meta
           name="description"
           content="Compare page of flone react minimalist eCommerce template."

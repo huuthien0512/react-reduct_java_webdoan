@@ -22,22 +22,14 @@ const ProductDescriptionInfo = ({
   addToWishlist,
   addToCompare
 }) => {
-  const [selectedProductColor, setSelectedProductColor] = useState(
-    product.variation ? product.variation[0].color : ""
-  );
-  const [selectedProductSize, setSelectedProductSize] = useState(
-    product.variation ? product.variation[0].size[0].name : ""
-  );
   const [productStock, setProductStock] = useState(
-    product ? product.qty : 0
+    product ? product.quantity : 0
   );
   const [quantityCount, setQuantityCount] = useState(1);
 
   const productCartQty = getProductCartQuantity(
     cartItems,
-    product,
-    selectedProductColor,
-    selectedProductSize
+    product
   );
 
   return (
@@ -46,13 +38,13 @@ const ProductDescriptionInfo = ({
       <div className="product-details-price">
         {discountedPrice !== null ? (
           <Fragment>
-            <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "}
+            <span>{finalDiscountedPrice*1000 + " " + currency.currencySymbol}</span>{" "}
             <span className="old">
-              {currency.currencySymbol + finalProductPrice}
+              {finalProductPrice*1000 + " " + currency.currencySymbol}
             </span>
           </Fragment>
         ) : (
-          <span>{currency.currencySymbol + finalProductPrice} </span>
+          <span>{finalProductPrice*1000 + " " + currency.currencySymbol} </span>
         )}
       </div>
       {product.rating && product.rating > 0 ? (
@@ -65,7 +57,7 @@ const ProductDescriptionInfo = ({
         ""
       )}
       <div className="pro-details-list">
-        <p>{product.shortDescription}</p>
+        <p>{product.description}</p>
       </div>
 
       {product.affiliateLink ? (
@@ -117,9 +109,7 @@ const ProductDescriptionInfo = ({
                   addToCart(
                     product,
                     addToast,
-                    quantityCount,
-                    selectedProductColor,
-                    selectedProductSize
+                    quantityCount
                   )
                 }
                 disabled={productCartQty >= productStock}
@@ -251,17 +241,13 @@ const mapDispatchToProps = dispatch => {
     addToCart: (
       item,
       addToast,
-      quantityCount,
-      selectedProductColor,
-      selectedProductSize
+      quantityCount
     ) => {
       dispatch(
         addToCart(
           item,
           addToast,
-          quantityCount,
-          selectedProductColor,
-          selectedProductSize
+          quantityCount
         )
       );
     },

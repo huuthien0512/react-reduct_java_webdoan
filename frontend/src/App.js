@@ -7,6 +7,7 @@ import { multilanguage, loadLanguages } from "redux-multilanguage";
 import { connect } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
 
+const Admin = lazy(() => import("./admin/index"));
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Product = lazy(() => import("./pages/Product"));
@@ -109,6 +110,11 @@ const App = (props) => {
                 <Route
                   path={process.env.PUBLIC_URL + "/checkout"}
                   component={Checkout}
+                />
+
+              <Route
+                  path={process.env.PUBLIC_URL + "/admin"}
+                  component={Admin}
                 />
 
                 <Route

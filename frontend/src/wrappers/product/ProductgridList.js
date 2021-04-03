@@ -38,6 +38,7 @@ const ProductGrid = ({
                 wishlistItem => wishlistItem.id === product.id
               )[0]
             }
+
             compareItem={
               compareItems.filter(
                 compareItem => compareItem.id === product.id

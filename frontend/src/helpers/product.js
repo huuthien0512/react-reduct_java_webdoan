@@ -1,10 +1,11 @@
 // get products
 export const getProducts = (products, category, type, limit) => {
-  const finalProducts = category
-    ? products.filter(
-        product => product.category.filter(single => single === category)[0]
-      )
-    : products;
+  const finalProducts = products
+  // category
+  //   ? products.filter(
+  //       product => product.category.filter(single => single === category)[0]
+  //     )
+  //   : products;
 
   if (type && type === "sanphammoi") {
     const newProducts = finalProducts.filter(single => single.isNew);
@@ -35,19 +36,13 @@ export const getDiscountPrice = (price, discount) => {
 export const getProductCartQuantity = (cartItems, product, color, size) => {
   let productInCart = cartItems.filter(
     single =>
-      single.id === product.id &&
-      (single.selectedProductColor
-        ? single.selectedProductColor === color
-        : true) &&
-      (single.selectedProductSize ? single.selectedProductSize === size : true)
+      single.id === product.id
   )[0];
   if (cartItems.length >= 1 && productInCart) {
     if (product.variation) {
       return cartItems.filter(
         single =>
-          single.id === product.id &&
-          single.selectedProductColor === color &&
-          single.selectedProductSize === size
+          single.id === product.id
       )[0].quantity;
     } else {
       return cartItems.filter(single => product.id === single.id)[0].quantity;

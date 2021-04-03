@@ -3,7 +3,7 @@ import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 
-const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
+const ProductDescriptionTab = ({ spaceBottomClass, productDesc }) => {
   return (
     <div className={`description-review-area ${spaceBottomClass}`}>
       <div className="container">
@@ -12,18 +12,18 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
             <Nav variant="pills" className="description-review-topbar">
               <Nav.Item>
                 <Nav.Link eventKey="additionalInfo">
-                  Additional Information
+                  Thông Tin Thêm
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="productDescription">Description</Nav.Link>
+                <Nav.Link eventKey="productDescription">Mô Tả</Nav.Link>
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="productReviews">Reviews(2)</Nav.Link>
               </Nav.Item>
             </Nav>
             <Tab.Content className="description-review-bottom">
-              <Tab.Pane eventKey="additionalInfo">
+              {/* <Tab.Pane eventKey="additionalInfo">
                 <div className="product-anotherinfo-wrapper">
                   <ul>
                     <li>
@@ -41,9 +41,9 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
                     </li>
                   </ul>
                 </div>
-              </Tab.Pane>
+              </Tab.Pane> */}
               <Tab.Pane eventKey="productDescription">
-                {productFullDesc}
+                {productDesc}
               </Tab.Pane>
               <Tab.Pane eventKey="productReviews">
                 <div className="row">
@@ -179,7 +179,7 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
 };
 
 ProductDescriptionTab.propTypes = {
-  productFullDesc: PropTypes.string,
+  productDesc: PropTypes.string,
   spaceBottomClass: PropTypes.string
 };
 

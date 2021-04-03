@@ -9,7 +9,7 @@
     "id": "2",
     "iconClass": "pe-7s-cup",
     "countNum": 690,
-    "title": "cups of coffee"
+    "title": "cups"
   },
   {
     "id": "3",
@@ -20,7 +20,7 @@
   {
     "id": "4",
     "iconClass": "pe-7s-smile",
-    "countNum": 10000,
+    "countNum": 1000000,
     "title": "Khách Hàng Vui Vẻ"
   }
 ]

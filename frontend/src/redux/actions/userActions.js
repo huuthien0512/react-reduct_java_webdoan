@@ -34,12 +34,12 @@ import {BASE_URL} from '../constants/URL_SERVER';
 //   payload: users
 // });
 
-export const fetchUsers = () => async(dispatch) => {
+export const listUsers = () => async(dispatch) => {
   try {
-    dispatch({ type: USER_LOGIN_REQUEST });
+    dispatch({ type: USER_LIST_REQUEST });
     const {data} = await axios.get(`${BASE_URL}/users`);
     dispatch({
-      type: USER_LIST_REQUEST,
+      type: USER_LIST_SUCCESS,
       payload: data,
     });
   } catch (error) {

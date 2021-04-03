@@ -49,7 +49,7 @@ const Compare = ({
                       <table className="table table-bordered mb-0">
                         <tbody>
                           <tr>
-                            <th className="title-column">Product Info</th>
+                            <th className="title-column">Thông Tin Sản Phẩm</th>
                             {compareItems.map((compareItem, key) => {
                               const cartItem = cartItems.filter(
                                 item => item.id === compareItem.id
@@ -165,18 +165,15 @@ const Compare = ({
                                   {discountedPrice !== null ? (
                                     <Fragment>
                                       <span className="amount old">
-                                        {currency.currencySymbol +
-                                          finalProductPrice}
+                                        {finalProductPrice*1000 + " " + currency.currencySymbol}
                                       </span>
                                       <span className="amount">
-                                        {currency.currencySymbol +
-                                          finalDiscountedPrice}
+                                        {finalDiscountedPrice*1000 + " " + currency.currencySymbol}
                                       </span>
                                     </Fragment>
                                   ) : (
                                     <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
+                                      {finalProductPrice*1000 + " " + currency.currencySymbol}
                                     </span>
                                   )}
                                 </td>
@@ -184,20 +181,20 @@ const Compare = ({
                             })}
                           </tr>
 
-                          <tr>
+                          {/* <tr>
                             <th className="title-column">Description</th>
                             {compareItems.map((compareItem, key) => {
                               return (
                                 <td className="product-desc" key={key}>
                                   <p>
-                                    {compareItem.shortDescription
-                                      ? compareItem.shortDescription
+                                    {compareItem.description
+                                      ? compareItem.description
                                       : "N/A"}
                                   </p>
                                 </td>
                               );
                             })}
-                          </tr>
+                          </tr> */}
 
                           <tr>
                             <th className="title-column">Rating</th>
@@ -224,8 +221,8 @@ const Compare = ({
                     </div>
                     <div className="item-empty-area__text">
                       No items found in compare <br />{" "}
-                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
-                        Add Items
+                      <Link to={process.env.PUBLIC_URL + "/shop"}>
+                        Thêm Sản Phẩm
                       </Link>
                     </div>
                   </div>

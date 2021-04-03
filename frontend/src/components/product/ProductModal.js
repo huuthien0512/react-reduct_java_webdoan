@@ -17,7 +17,7 @@ function ProductModal(props) {
   const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
   
   const [productStock, setProductStock] = useState(
-    product ? product.qty : 0
+    product ? product.quantity : 0
   );
   const [quantityCount, setQuantityCount] = useState(1);
 
@@ -136,14 +136,14 @@ function ProductModal(props) {
                   {discountedprice !== null ? (
                     <Fragment>
                       <span>
-                        {currency.currencySymbol + finaldiscountedprice}
+                        {finaldiscountedprice*1000 + "  "+ currency.currencySymbol}
                       </span>{" "}
                       <span className="old">
-                        {currency.currencySymbol + finalproductprice}
+                        {finalproductprice + " " + currency.currencySymbol}
                       </span>
                     </Fragment>
                   ) : (
-                    <span>{currency.currencySymbol + finalproductprice} </span>
+                    <span>{finalproductprice + " " + currency.currencySymbol} </span>
                   )}
                 </div>
                 {product.rating && product.rating > 0 ? (
@@ -156,7 +156,7 @@ function ProductModal(props) {
                   ""
                 )}
                 <div className="pro-details-list">
-                  <p>{product.shortDescription}</p>
+                  <p>{product.description}</p>
                 </div>
 
                 {product.affiliateLink ? (

@@ -11,6 +11,7 @@ export const addToCompare = (item, addToast) => {
       });
     }
     dispatch({ type: ADD_TO_COMPARE, payload: item });
+   // localStorage.setItem('compareItems', JSON.stringify(item));
   };
 };
 

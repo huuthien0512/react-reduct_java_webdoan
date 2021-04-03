@@ -96,7 +96,7 @@ const ProductGridSingle = ({
                   <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}>
                     Select Option
                   </Link>
-                ) : product.qty && product.qty > 0 ? (
+                ) : product.quantity && product.quantity > 0 ? (
                   <button
                     onClick={() => addToCart(product, addToast)}
                     className={
@@ -144,13 +144,13 @@ const ProductGridSingle = ({
             <div className="product-price">
               {discountedPrice !== null ? (
                 <Fragment>
-                  <span>{currency.currencySymbol + finalDiscountedPrice}</span>{" "}
+                  <span>{finalDiscountedPrice*1000 + " " + currency.currencySymbol}</span>{" "}
                   <span className="old">
-                    {currency.currencySymbol + finalProductPrice}
+                    {finalProductPrice*1000 + " " + currency.currencySymbol}
                   </span>
                 </Fragment>
               ) : (
-                <span>{currency.currencySymbol + finalProductPrice} </span>
+                <span>{finalProductPrice*1000 + " " + currency.currencySymbol} </span>
               )}
             </div>
           </div>

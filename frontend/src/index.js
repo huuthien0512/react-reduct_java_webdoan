@@ -14,11 +14,17 @@ import App from "./App";
 import "./assets/scss/style.scss";
 import * as serviceWorker from "./serviceWorker";
 
+
 import { composeWithDevTools } from "redux-devtools-extension";
+import { listUsers } from "./redux/actions/userActions";
 
 const userInfoFormLocalStore=localStorage.getItem('users')?JSON.parse(localStorage.getItem('users')):null
+const cartItemsFormLocalStore=localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('cartItems')):[]
+const compareItemsFormLocalStore=localStorage.getItem('compareItems')?JSON.parse(localStorage.getItem('compareItems')):[]
 const initialState={
-  loginData:{users:userInfoFormLocalStore}
+  loginData:{users:userInfoFormLocalStore},
+  //cartData:{cartItems:cartItemsFormLocalStore},
+  //compareData:{compartItems:compareItemsFormLocalStore}
 }
 const store = createStore(
   rootReducer,
@@ -27,12 +33,13 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
+export default (store);
 
 // fetch products from json file
 store.dispatch(fetchProducts());
 store.dispatch(fetchBlogs());
 
-ReactDOM.render(
+ReactDOM.render (
   <Provider store={store}>
     <App />
   </Provider>,

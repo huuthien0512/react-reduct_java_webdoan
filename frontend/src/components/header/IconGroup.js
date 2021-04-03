@@ -11,12 +11,13 @@ const IconGroup = ({
   wishlistData,
   compareData,
   deleteFromCart,
-  iconWhiteClass
+  iconWhiteClass,
+  userLogin,
+  history
 }) => {
   const handleClick = e => {
     e.currentTarget.nextSibling.classList.toggle("active");
   };
-
   const triggerMobileMenu = () => {
     const offcanvasMobileMenu = document.querySelector(
       "#offcanvas-mobile-menu"
@@ -41,30 +42,19 @@ const IconGroup = ({
           </form>
         </div>
       </div>
+
+
       <div className="same-style account-setting d-none d-lg-block">
-        <button
-          className="account-setting-active"
-          onClick={e => handleClick(e)}
-        >
+      {userLogin ?
+        <Link to={process.env.PUBLIC_URL + "/my-account"} className="account-setting-active">
           <i className="pe-7s-user-female" />
-        </button>
-        <div className="account-dropdown">
-          <ul>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>Đăng Nhập</Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>
-                Đăng Ký
-              </Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/my-account"}>
-                Tài Khoản
-              </Link>
-            </li>
-          </ul>
-        </div>
+        </Link>
+        :
+        <Link to={process.env.PUBLIC_URL + "/login-register"} className="account-setting-active">
+          <i className="pe-7s-user-female" />
+        </Link>
+      }
+        
       </div>
       <div className="same-style header-compare">
         <Link to={process.env.PUBLIC_URL + "/compare"}>
@@ -122,7 +112,8 @@ IconGroup.propTypes = {
   currency: PropTypes.object,
   iconWhiteClass: PropTypes.string,
   deleteFromCart: PropTypes.func,
-  wishlistData: PropTypes.array
+  wishlistData: PropTypes.array,
+  userLogin: PropTypes.object
 };
 
 const mapStateToProps = state => {
@@ -130,7 +121,8 @@ const mapStateToProps = state => {
     currency: state.currencyData,
     cartData: state.cartData,
     wishlistData: state.wishlistData,
-    compareData: state.compareData
+    compareData: state.compareData,
+    userLogin: state.loginData.users
   };
 };
 

@@ -21,7 +21,6 @@ const LoginRegister = ({ location, login, register, userLogin, history}) => {
   
   useEffect(()=>{
     if(userLogin){
-      console.log(userLogin)
       history.push(redirect)
     }
   },[history, userLogin, redirect]);
