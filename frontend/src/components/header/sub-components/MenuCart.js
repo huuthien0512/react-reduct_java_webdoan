@@ -48,11 +48,11 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                         {single.name}{" "}
                       </Link>
                     </h4>
-                    <h6>Qty: {single.quantity}</h6>
+                    <h6>Số lượng: {single.quantity}</h6>
                     <span>
                       {discountedPrice !== null
-                        ? currency.currencySymbol + finalDiscountedPrice
-                        : currency.currencySymbol + finalProductPrice}
+                        ? finalDiscountedPrice*1000 + " " + currency.currencySymbol
+                        : finalProductPrice*1000 + " " + currency.currencySymbol}
                     </span>
                   </div>
                   <div className="shopping-cart-delete">
@@ -68,7 +68,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
             <h4>
               Total :{" "}
               <span className="shop-total">
-                {currency.currencySymbol + cartTotalPrice.toFixed(2)}
+                {cartTotalPrice.toFixed(2)*1000 + " " + currency.currencySymbol}
               </span>
             </h4>
           </div>
@@ -85,7 +85,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
           </div>
         </Fragment>
       ) : (
-        <p className="text-center">No items added to cart</p>
+        <p className="text-center">Không có sản phẩm nào trong giỏ</p>
       )}
     </div>
   );

@@ -126,6 +126,7 @@ export const updateProfile=(newInfo, userLogin)=>async (dispatch)=>{
     
     const {data}= await axios.put( `${BASE_URL}/user/update/${userLogin.id}`, newInfo)
     dispatch({type:USER_UPDATE_PROFILE_SUCCESS})
+    localStorage.setItem('users', JSON.stringify(data));
   } catch (error) {
     dispatch({type:USER_UPDATE_PROFILE_FAIL,payload:error.response && error.response.data.msg})
   }
@@ -136,7 +137,6 @@ export const updatePassword=(newInfoPassword, userLogin)=>async (dispatch)=>{
   try {
     
     dispatch({type:USER_UPDATE_PROFILE_REQUEST});
-    
     //const {loginData:{userInfo}}=getState()
     // const config={
     //   headers:{
@@ -148,5 +148,40 @@ export const updatePassword=(newInfoPassword, userLogin)=>async (dispatch)=>{
     dispatch({type:USER_UPDATE_PROFILE_SUCCESS})
   } catch (error) {
     dispatch({type:USER_UPDATE_PROFILE_FAIL,payload:error.response && error.response.data.msg})
+  }
+}
+export const logout = () => async (dispatch) => {
+  localStorage.removeItem('users');
+  dispatch({
+    type: USER_LOGOUT,
+  });
+  dispatch({
+    type:USER_LIST_RESET
+  });
+  dispatch({
+    type:USER_DELETE_RESET
+  })
+
+};
+export const deleteUser=(id) => async (dispatch,getState)=>{
+  try {
+    dispatch({type:USER_DELETE_REQUEST});
+    //const {userLogin:{userInfo}}=getState()
+    // const config={
+    //   headers:{
+    //     'Authorization':userInfo.token
+    //   }
+    // }
+    const {data} = await axios.delete(`${BASE_URL}/user/delete/${id}`)
+    
+    dispatch({
+      type:USER_DELETE_SUCCESS,
+      
+    })
+  } catch (error) {
+    dispatch({
+      type: USER_DELETE_FAIL,
+      payload: error.response && error.response.data.msg,
+    });
   }
 }

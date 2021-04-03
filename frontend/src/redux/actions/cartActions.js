@@ -1,3 +1,4 @@
+import { CART_ADD_ITEM, CART_REMOVE_ITEM,CART_SAVE_ADDRESS,CART_SAVE_METHOD } from "../constants/cartConstants";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY";
 export const DELETE_FROM_CART = "DELETE_FROM_CART";
@@ -62,3 +63,9 @@ export const cartItemStock = (item) => {
     return item.stock;
   }
 };
+export const savePayment=(payment)=>async(dispatch,getState)=>{
+  dispatch({
+    type:CART_SAVE_METHOD,
+    payload:payment
+  })
+}

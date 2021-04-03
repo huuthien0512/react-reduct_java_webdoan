@@ -25,18 +25,18 @@ const Checkout = lazy(() => import("./pages/Checkout"));
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-const App = (props) => {
-  useEffect(() => {
-    props.dispatch(
-      loadLanguages({
-        languages: {
-          en: require("./translations/english.json"),
-          fn: require("./translations/french.json"),
-          de: require("./translations/germany.json")
-        }
-      })
-    );
-  });
+const App = ({userLogin}) => {
+  // useEffect(() => {
+  //   props.dispatch(
+  //     loadLanguages({
+  //       languages: {
+  //         en: require("./translations/english.json"),
+  //         fn: require("./translations/french.json"),
+  //         de: require("./translations/germany.json")
+  //       }
+  //     })
+  //   );
+  // });
 
   return (
     <ToastProvider placement="bottom-left">
@@ -60,6 +60,11 @@ const App = (props) => {
                   component={Home}
                 />
 
+                {/* Admin */}
+                <Route
+                  path={process.env.PUBLIC_URL + "/admin"}
+                  component={userLogin && userLogin.isAdmin?Admin:NotFound}
+                />
                 {/* Homepages */}
                 <Route path={process.env.PUBLIC_URL + "/home"} component={Home}/>
                 {/* Shop pages */}
@@ -112,11 +117,6 @@ const App = (props) => {
                   component={Checkout}
                 />
 
-              <Route
-                  path={process.env.PUBLIC_URL + "/admin"}
-                  component={Admin}
-                />
-
                 <Route
                   path={process.env.PUBLIC_URL + "/not-found"}
                   component={NotFound}
@@ -133,7 +133,12 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
+  userLogin: PropTypes.func
 };
-
-export default connect()(multilanguage(App));
+const mapStateToProps = state => {
+  return {
+    userLogin: state.loginData.users,
+  };
+};
+export default connect(mapStateToProps)(multilanguage(App));

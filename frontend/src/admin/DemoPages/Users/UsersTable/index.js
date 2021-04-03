@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
     Row, Col,
@@ -8,14 +8,20 @@ import {
 import PropTypes from "prop-types";
 import PageTitle from '../../../Layout/AppMain/PageTitle';
 import { Button, Table } from 'react-bootstrap';
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import {AiFillCheckCircle,AiOutlineCloseCircle,AiFillEdit,AiOutlineDelete} from 'react-icons/ai'
 import {LinkContainer} from 'react-router-bootstrap'
+import {deleteUser} from '../../../../redux/actions/userActions'
+import {USER_DELETE_RESET} from '../../../../redux/constants/userConstants'
+import Loader from '../../Components/Loader';
 
-const UsersTable = ({listUsers}) => {
+const UsersTable = ({listUsers, successDelete, goDelete, deleteUser, loading }) => {
+  console.log(loading)
   const handleDelete=async(id)=>{
-    //deleteUser(id);
+    deleteUser(id);
   }
+  const dispatch=useDispatch();
+
     return (
         <Fragment>
             {/* <PageTitle
@@ -35,6 +41,7 @@ const UsersTable = ({listUsers}) => {
                         <Card className="main-card mb-3">
                             <CardBody>
                                 <CardTitle>Danh Sách Tài Khoản</CardTitle>
+                                
                                 <Table striped bordered hover responsive className='table-sm mb-0' bordered>
                                 <thead>
                                   <tr align="center">
@@ -49,24 +56,25 @@ const UsersTable = ({listUsers}) => {
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {listUsers.map(user => {
+                                  {listUsers.map((user, key) => {
+
                                     return(
-                                    <tr align="center">
+                                    <tr align="center" >
                                       <th scope="row">1</th>
-                                      <td>{user.firstname}</td>
+                                      <td >{user.firstname}</td>
                                       <td>{user.lastname}</td>
                                       <td>{user.username}</td>
                                       <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
                                       <td>{user.telephone}</td>
                                       <td>{user.isAdmin?<AiFillCheckCircle/>:<AiOutlineCloseCircle/>}</td>
                                       <td>
-                                        <LinkContainer to={`/user/${user._id}/edit`}>
+      
                                           <Button variant='light' className='btn-sm'>
                                               <AiFillEdit/>
                                           </Button>
-                                        </LinkContainer>
+                              
                                         &nbsp;&nbsp;&nbsp;
-                                        <Button variant='danger' className='btn-sm' onClick={()=>handleDelete(user._id)}>
+                                        <Button variant='danger' className='btn-sm' onClick={()=>handleDelete(user.id)}>
                                               <AiOutlineDelete/>
                                           </Button>
                                       </td>
@@ -86,12 +94,21 @@ const UsersTable = ({listUsers}) => {
 
 const mapStateToProps = state => {
   return {
-    listUsers: state.listUsersData.users
+    listUsers: state.listUsersData.users,
+    successDelete: state.userDeleteData,
+    loading: state.userDeleteData.loading
   };
 };
 UsersTable.propTypes = {
-  listUsers: PropTypes.object
+  listUsers: PropTypes.object,
+};
+const mapDispatchToProps = dispatch => {
+  
+  return {
+    deleteUser: (id) => {
+      dispatch(deleteUser(id));
+    }
+  };
 };
 
-
-export default connect(mapStateToProps)(UsersTable);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersTable);

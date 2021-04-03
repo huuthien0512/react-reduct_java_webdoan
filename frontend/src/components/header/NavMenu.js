@@ -16,28 +16,27 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
         <ul>
           <li>
             <Link to={process.env.PUBLIC_URL + "/"}>
-              {strings["home"]}
+              Home
             </Link>
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/shop"}>
-              {" "}
-              {strings["shop"]}
+              Cửa Hàng
             </Link>
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/blog"}>
-              {strings["blog"]}
+              Blog
             </Link>
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/about"}>
-              {strings["about_us"]}
+              Về Chúng Tôi
             </Link>
           </li>
           <li>
             <Link to={process.env.PUBLIC_URL + "/contact"}>
-              {strings["contact_us"]}
+              Liên Hệ
             </Link>
           </li>
         </ul>

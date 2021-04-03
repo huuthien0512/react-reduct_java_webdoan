@@ -22,7 +22,7 @@ const Shop = ({location, products}) => {
     const [currentData, setCurrentData] = useState([]);
     const [sortedProducts, setSortedProducts] = useState([]);
 
-    const pageLimit = 15;
+    const pageLimit = 9;
     const {pathname} = location;
 
     const getLayout = (layout) => {

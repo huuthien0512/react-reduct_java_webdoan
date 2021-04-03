@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Fragment } from "react";
+import React, { Fragment, useState  } from "react";
 import { Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import { connect } from "react-redux";
@@ -7,10 +7,13 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import { getDiscountPrice } from "../helpers/product";
 import Layout from "../layouts/Layout";
 import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
+import { Button, Form, Row, Col } from 'react-bootstrap';
+import { savePayment } from '../redux/actions/cartActions';
 
-const Checkout = ({ location, cartItems, currency }) => {
+const Checkout = ({ location, cartItems, currency, savePayment}) => {
   const { pathname } = location;
   let cartTotalPrice = 0;
+  //const [payment, setPayment] = useState('Paypal');
 
   return (
     <Fragment>
@@ -131,15 +134,15 @@ const Checkout = ({ location, cartItems, currency }) => {
                                   </span>{" "}
                                   <span className="order-price">
                                     {discountedPrice !== null
-                                      ? currency.currencySymbol +
-                                        (
-                                          finalDiscountedPrice *
-                                          cartItem.quantity
-                                        ).toFixed(2)
-                                      : currency.currencySymbol +
-                                        (
-                                          finalProductPrice * cartItem.quantity
-                                        ).toFixed(2)}
+                                      ? (
+                                        finalDiscountedPrice *
+                                        cartItem.quantity
+                                      ).toFixed(2)*1000 + " " + currency.currencySymbol
+                                        
+                                      : (
+                                        finalProductPrice * cartItem.quantity
+                                      ).toFixed(2)*1000 + " " + currency.currencySymbol
+                                        }
                                   </span>
                                 </li>
                               );
@@ -156,13 +159,38 @@ const Checkout = ({ location, cartItems, currency }) => {
                           <ul>
                             <li className="order-total">Tổng</li>
                             <li>
-                              {currency.currencySymbol +
-                                cartTotalPrice.toFixed(2)}
+                              {cartTotalPrice.toFixed(2)*1000 + " " + currency.currencySymbol
+                                }
                             </li>
                           </ul>
                         </div>
                       </div>
-                      <div className="payment-method"></div>
+                      <div className="payment-method">
+                      <Form.Group>
+                      <Form.Label>Chọn phương thức</Form.Label>
+                      <Col>
+                        <Form.Check
+                          type='radio'
+                          label='PayPal'
+                          id='PayPal'
+                          name='payment'
+                          value='PayPal'
+                          checked
+                          //onChange={/*(e) => setPayment(e.target.value)*/}
+                        ></Form.Check>
+                      </Col>
+                      {/* <Col>
+                        <Form.Check
+                          type='radio'
+                          label='Card'
+                          id='Card'
+                          name='payment'
+                          value='Card'
+                          //onChange={/*(e) => setPayment(e.target.value)}
+                        ></Form.Check>
+                      </Col> */}
+                    </Form.Group>
+                      </div>
                     </div>
                     <div className="place-order mt-25">
                       <button className="btn-hover">Đặt Hàng</button>
@@ -206,5 +234,11 @@ const mapStateToProps = state => {
     currency: state.currencyData
   };
 };
-
-export default connect(mapStateToProps)(Checkout);
+const mapDispatchToProps = dispatch => {
+  return {
+    savePayment: (payment) => {
+      dispatch(savePayment(payment));
+    }
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

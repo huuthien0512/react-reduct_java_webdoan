@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import MenuCart from "./sub-components/MenuCart";
 import { deleteFromCart } from "../../redux/actions/cartActions";
+import { logout } from "../../redux/actions/userActions";
 
 const IconGroup = ({
   currency,
@@ -13,7 +14,8 @@ const IconGroup = ({
   deleteFromCart,
   iconWhiteClass,
   userLogin,
-  history
+  history,
+  logout
 }) => {
   const handleClick = e => {
     e.currentTarget.nextSibling.classList.toggle("active");
@@ -24,7 +26,9 @@ const IconGroup = ({
     );
     offcanvasMobileMenu.classList.add("active");
   };
-
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <div
       className={`header-right-wrap ${iconWhiteClass ? iconWhiteClass : ""}`}
@@ -47,7 +51,7 @@ const IconGroup = ({
       <div className="same-style account-setting d-none d-lg-block">
       {userLogin ?
         <Link to={process.env.PUBLIC_URL + "/my-account"} className="account-setting-active">
-          <i className="pe-7s-user-female" />
+          <i className="pe-7s-star" />
         </Link>
         :
         <Link to={process.env.PUBLIC_URL + "/login-register"} className="account-setting-active">
@@ -79,6 +83,7 @@ const IconGroup = ({
             {cartData && cartData.length ? cartData.length : 0}
           </span>
         </button>
+        
         {/* menu cart */}
         <MenuCart
           cartData={cartData}
@@ -86,6 +91,7 @@ const IconGroup = ({
           deleteFromCart={deleteFromCart}
         />
       </div>
+      
       <div className="same-style cart-wrap d-block d-lg-none">
         <Link className="icon-cart" to={process.env.PUBLIC_URL + "/cart"}>
           <i className="pe-7s-shopbag" />
@@ -93,6 +99,12 @@ const IconGroup = ({
             {cartData && cartData.length ? cartData.length : 0}
           </span>
         </Link>
+      </div>
+      <div>&nbsp;&nbsp;&nbsp;</div>
+      <div className="same-style header-compare">
+        <button onClick={() => handleLogout()}>
+          <i className="pe-7s-right-arrow" />
+        </button>
       </div>
       <div className="same-style mobile-off-canvas d-block d-lg-none">
         <button
@@ -130,6 +142,9 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteFromCart: (item, addToast) => {
       dispatch(deleteFromCart(item, addToast));
+    },
+    logout: () => {
+      dispatch(logout());
     }
   };
 };

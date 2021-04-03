@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  getIndividualCategories
+} from "../../helpers/blog";
+import { setActiveSort } from "../../helpers/blog";
+import ShopCategories from "../../components/product/ShopCategories";
 
-const BlogSidebar = ( categories) => {
-  console.log(categories)
+const BlogSidebar = ( {blogs, getSortParams, sideSpaceClass}) => {
+  const uniqueCategories = getIndividualCategories(blogs);
+  console.log(uniqueCategories)
   return (
+    <div className={`sidebar-style ${sideSpaceClass ? sideSpaceClass : ""}`}>
     <div className="sidebar-style">
       <div className="sidebar-widget">
         <h4 className="pro-sidebar-title">Tìm Kiếm </h4>
@@ -18,44 +25,23 @@ const BlogSidebar = ( categories) => {
           </form>
         </div>
       </div>
-      <div className="sidebar-widget mt-35">
-        <h4 className="pro-sidebar-title">Categories</h4>
-        <div className="sidebar-widget-list sidebar-widget-list--blog mt-20">
-          <ul>
-          {/* {categories.map((category) => {
-            return (
-            <li >
-              <div className="sidebar-widget-list-left">
-              <button
-                      // onClick={e => {
-                      //   getSortParams("category", category);
-                      //  // setActiveSort(e);
-                      // }}
-                    >
-                      {" "}
-                      <span className="checkmark" /> {category}{" "}
-                    </button> */}
-                <input type="checkbox" defaultValue />{" "}
-                <Link to={process.env.PUBLIC_URL + "/blo"}>
-                  Women <span>4</span>{" "}
-                </Link>
-                <span className="checkmark" />
-              {/* </div>
-            </li>
-            );
-            })} */}
-          </ul>
-        </div>
-      </div>
+      {/* filter by categories */}
+      <ShopCategories
+        categories={uniqueCategories}
+        getSortParams={getSortParams}
+      />
+    </div>
     </div>
   );
 };
 BlogSidebar.propTypes = {
-  categories: PropTypes.array
+  categories: PropTypes.array,
+  getSortParams: PropTypes.func
 };
 const mapStateToProps = (state, ownProps) => {
   return {
-    categories: state.blogData.blogs.category
+    categories: state.blogData.blogs.category,
+    blogs: state.blogData.blogs
   };
 };
 export default connect(mapStateToProps)(BlogSidebar);

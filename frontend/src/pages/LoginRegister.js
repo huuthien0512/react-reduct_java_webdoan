@@ -17,13 +17,12 @@ const LoginRegister = ({ location, login, register, userLogin, history}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const redirect=location.search?location.search.split('=')[1]:'/'
   
   useEffect(()=>{
     if(userLogin){
-      history.push(redirect)
+      history.push('/')
     }
-  },[history, userLogin, redirect]);
+  },[history, userLogin]);
   
   const submitHandler=(e)=>{
       e.preventDefault();

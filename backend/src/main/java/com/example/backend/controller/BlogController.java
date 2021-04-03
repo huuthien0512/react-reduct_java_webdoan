@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.model.Blog;
 import com.example.backend.model.Product;
+import com.example.backend.repository.BlogRepository;
 import com.example.backend.repository.ProductRepository;
 
 @RestController
@@ -24,11 +26,11 @@ import com.example.backend.repository.ProductRepository;
 public class BlogController {
 	
 	@Autowired
-	public ProductRepository productRepository;
+	public BlogRepository blogRepository;
 	
-	@GetMapping(value = "/products")
-	public List<Product> getAllProduct(){
-		return productRepository.findAll();
+	@GetMapping(value = "/blogs")
+	public List<Blog> getAllBlog(){
+		return blogRepository.findAll();
 	}
 	
 //	public boolean checkAdmin(String id) {
@@ -39,9 +41,9 @@ public class BlogController {
 //		return false;
 //	}
 //	
-	@PostMapping(value = "/product/create")
-	public String createProduct(@RequestBody Product product) {
-		Product insertedProduct = productRepository.insert(product);
+	@PostMapping(value = "/blog/create")
+	public String createBlog(@RequestBody Blog blog) {
+		Blog insertedBlog = blogRepository.insert(blog);
 		return "OK";
 	}
 //	

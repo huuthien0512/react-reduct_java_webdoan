@@ -1,4 +1,4 @@
-import {userReducer, userDetails, listUsers} from "./userReducer";
+import {userReducer, userDetails, listUsers, userDelete} from "./userReducer";
 import currencyReducer from "./currencyReducer";
 import productReducer from "./productReducer";
 import blogReducer from "./blogReducer";
@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   loginData: userReducer,
   listUsersData:listUsers,
   userData: userDetails,
+  userDeleteData: userDelete,
   currencyData: currencyReducer,
   productData: productReducer,
   blogData: blogReducer,

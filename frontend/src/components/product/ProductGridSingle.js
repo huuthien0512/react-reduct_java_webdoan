@@ -92,29 +92,29 @@ const ProductGridSingle = ({
                     {" "}
                     Buy now{" "}
                   </a>
-                ) : product && product.length >= 1 ? (
+                ) : product && product.quantity >= 0 ? (
                   <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}>
                     Select Option
                   </Link>
-                ) : product.quantity && product.quantity > 0 ? (
-                  <button
-                    onClick={() => addToCart(product, addToast)}
-                    className={
-                      cartItem !== undefined && cartItem.quantity > 0
-                        ? "active"
-                        : ""
-                    }
-                    disabled={cartItem !== undefined && cartItem.quantity > 0}
-                    title={
-                      cartItem !== undefined ? "Added to cart" : "Add to cart"
-                    }
-                  >
-                    {" "}
-                    <i className="pe-7s-cart"></i>{" "}
-                    {cartItem !== undefined && cartItem.quantity > 0
-                      ? "Added"
-                      : "Add to cart"}
-                  </button>
+                // ) : product.quantity && product.quantity > 0 ? (
+                //   <button
+                //     onClick={() => addToCart(product, addToast)}
+                //     className={
+                //       cartItem !== undefined && cartItem.quantity > 0
+                //         ? "active"
+                //         : ""
+                //     }
+                //     disabled={cartItem !== undefined && cartItem.quantity > 0}
+                //     title={
+                //       cartItem !== undefined ? "Added to cart" : "Add to cart"
+                //     }
+                //   >
+                //     {" "}
+                //     <i className="pe-7s-cart"></i>{" "}
+                //     {cartItem !== undefined && cartItem.quantity > 0
+                //       ? "Added"
+                //       : "Add to cart"}
+                //   </button>
                 ) : (
                   <button disabled className="active">
                     Out of Stock

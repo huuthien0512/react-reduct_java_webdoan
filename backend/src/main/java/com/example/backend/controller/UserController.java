@@ -63,7 +63,7 @@ public class UserController {
 	}
 	
 	@PutMapping(value = "/user/update/{id}")
-	public String updateProfile(@PathVariable("id") String id, @RequestBody User user) {
+	public User updateProfile(@PathVariable("id") String id, @RequestBody User user) {
 		List<User> users = userRepository.findAll();
 		for(int i=0; i<users.size(); i++)
 			if (users.get(i).getId().equals(id)) {
@@ -78,19 +78,23 @@ public class UserController {
 				if(user.getTelephone() != null)
 					users.get(i).setTelephone(user.getTelephone());
 				userRepository.saveAll(users);
-				return "OK";
+				return users.get(i);
 			}
-		return "FALSE";
+		return null;
 	}
 	
 	@PutMapping(value = "/user/update/password/{id}")
 	public String updatePassword(@PathVariable("id") String id, @RequestBody User user) {
+		System.out.print(user.getPassword());
 		List<User> users = userRepository.findAll();
 		for(int i=0; i<users.size(); i++)
 			if (users.get(i).getId().equals(id)) {
-				users.get(i).setPassword(user.getPassword());
-				userRepository.saveAll(users);
-				return "OK";
+				if(user.getPassword() != null) {
+					users.get(i).setPassword(user.getPassword());
+					userRepository.saveAll(users);
+					return "OK";
+				}
+				
 			}
 		return "FALSE";
 	}

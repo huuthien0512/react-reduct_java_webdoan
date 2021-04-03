@@ -224,7 +224,7 @@ const Cart = ({
 
                 <div className="row">
                   <div className="col-lg-4 col-md-6">
-                    <div className="cart-tax">
+                     {/*<div className="cart-tax">
                       <div className="title-wrap">
                         <h4 className="cart-bottom-title section-bg-gray">
                           Thông Tin Giao Hàng
@@ -249,17 +249,17 @@ const Cart = ({
                               <option>Ấn Độ</option>
                               <option>Thái Lan</option>
                             </select> */}
-                          </div>
+                          {/* </div>
                           <div className="tax-select">
                             <label>* Quận / Huyện</label>
-                            <input type="text" />
+                            <input type="text" /> */}
                             {/* <select className="email s-email s-wid">
                               <option>Quận 1</option>
                               <option>Quận 2</option>
                               <option>Quận 3</option>
                               <option>Quận 4</option>
                               <option>Quận 5</option>
-                            </select> */}
+                            </select> *
                           </div>
                           <div className="tax-select">
                             <label>* Thành Phố</label>
@@ -267,8 +267,8 @@ const Cart = ({
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </div>*/}
+                  </div> 
 
                   <div className="col-lg-4 col-md-6">
                     <div className="discount-code-wrapper">

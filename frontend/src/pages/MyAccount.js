@@ -17,6 +17,7 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
@@ -37,13 +38,14 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
 
   const newInfo={
     firstname:firstname,
+    lastname:lastname,
     password:password,
     email:email,
     telephone:telephone,
   }
 
   const newInfoPassword={
-    password:password,
+    password:newPassword,
   }
 
   const submitHandlerUpdateProfile=(e)=>{
@@ -52,8 +54,11 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
   }
 
   const submitHandlerUpdatePassword=(e)=>{
-    e.preventDefault();
+    if (newPassword == confirmNewPassword){
+      e.preventDefault();
       updatePassword(newInfoPassword, userLogin);
+    }
+    
   }
 
   return (
@@ -152,7 +157,7 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
                             <div className="row">
                               <div className="col-lg-12 col-md-12">
                                 <div className="billing-info">
-                                  <label>Mật khẩu</label>
+                                  <label>Mật khẩu hiện tại</label>
                                   <input type="password" 
                                   value={password}
                                   onChange={(e)=>setPassword(e.target.value)}/>
@@ -160,10 +165,18 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
                               </div>
                               <div className="col-lg-12 col-md-12">
                                 <div className="billing-info">
-                                  <label>Nhập lại mật khẩu</label>
+                                  <label>Mật khẩu mới</label>
                                   <input type="password" 
                                   value={newPassword}
                                   onChange={(e)=>setNewPassword(e.target.value)}/>
+                                </div>
+                              </div>
+                              <div className="col-lg-12 col-md-12">
+                                <div className="billing-info">
+                                  <label>Nhập lại mật khẩu mới</label>
+                                  <input type="password" 
+                                  value={confirmNewPassword}
+                                  onChange={(e)=>setConfirmNewPassword(e.target.value)}/>
                                 </div>
                               </div>
                             </div>

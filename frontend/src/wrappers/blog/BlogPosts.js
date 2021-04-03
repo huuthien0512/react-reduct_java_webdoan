@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
+
 
 
 const BlogPosts = ({blogs}) => {
@@ -75,9 +75,5 @@ const BlogPosts = ({blogs}) => {
     </Fragment>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    blogs: state.blogData.blogs,
-  };
-};
-export default connect(mapStateToProps)(BlogPosts);
+
+export default BlogPosts;
