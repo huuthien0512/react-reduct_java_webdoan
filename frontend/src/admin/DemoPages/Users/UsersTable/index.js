@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect } from 'react';
+import React, {Fragment,useState, useEffect } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
     Row, Col,
@@ -8,27 +8,33 @@ import {
 import PropTypes from "prop-types";
 import PageTitle from '../../../Layout/AppMain/PageTitle';
 import { Button, Table } from 'react-bootstrap';
-import { connect, useDispatch } from "react-redux";
-import {AiFillCheckCircle,AiOutlineCloseCircle,AiFillEdit,AiOutlineDelete} from 'react-icons/ai'
+import { connect, useDispatch , useSelector} from "react-redux";
+import {AiFillCheckCircle,AiOutlineCloseCircle,AiFillEdit,AiOutlineDelete, AiFillPlusSquare} from 'react-icons/ai'
 import {LinkContainer} from 'react-router-bootstrap'
-import {deleteUser} from '../../../../redux/actions/userActions'
+import {deleteUser, listUsers} from '../../../../redux/actions/userActions'
 import {USER_DELETE_RESET} from '../../../../redux/constants/userConstants'
 import Loader from '../../Components/Loader';
 
-const UsersTable = ({listUsers, successDelete, goDelete, deleteUser, loading }) => {
-  console.log(loading)
+const UsersTable = ({ listUsersInfo, successDelete, successUpdate, deleteUser, loading, userLogin, history, listUsers }) => {
+  const dispatch=useDispatch();
   const handleDelete=async(id)=>{
     deleteUser(id);
   }
-  const dispatch=useDispatch();
 
+
+  useEffect(()=>{
+    listUsers();
+
+    if(successDelete) {
+      dispatch({type:USER_DELETE_RESET})
+    }
+    if(!userLogin){
+      history.push('/');
+    }
+    
+  },[dispatch,successUpdate, successDelete])
     return (
         <Fragment>
-            {/* <PageTitle
-                heading="Regular Tables"
-                subheading="Tables are the backbone of almost all web applications."
-                icon="pe-7s-drawer icon-gradient bg-happy-itmeo"
-            /> */}
             <ReactCSSTransitionGroup
                 component="div"
                 transitionName="TabsAnimation"
@@ -40,8 +46,16 @@ const UsersTable = ({listUsers, successDelete, goDelete, deleteUser, loading }) 
                     <Col lg="12">
                         <Card className="main-card mb-3">
                             <CardBody>
+                              <div>
                                 <CardTitle>Danh Sách Tài Khoản</CardTitle>
-                                
+                                <LinkContainer to={`user/create`}>
+                                <Button variant='success' className='pull-right' >
+                                              <AiFillPlusSquare/>
+                                          </Button>
+                                          </LinkContainer>
+                                          <br></br><br></br><br></br>
+                                </div>
+                                {loading?<Loader/>:(
                                 <Table striped bordered hover responsive className='table-sm mb-0' bordered>
                                 <thead>
                                   <tr align="center">
@@ -56,11 +70,11 @@ const UsersTable = ({listUsers, successDelete, goDelete, deleteUser, loading }) 
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  {listUsers && listUsers.map((user, key) => {
+                                  {listUsersInfo && listUsersInfo.map((user, key) => {
 
                                     return(
                                     <tr align="center" >
-                                      <th scope="row">1</th>
+                                      <th scope="row">{key}</th>
                                       <td >{user.firstname}</td>
                                       <td>{user.lastname}</td>
                                       <td>{user.username}</td>
@@ -68,11 +82,11 @@ const UsersTable = ({listUsers, successDelete, goDelete, deleteUser, loading }) 
                                       <td>{user.telephone}</td>
                                       <td>{user.isAdmin?<AiFillCheckCircle/>:<AiOutlineCloseCircle/>}</td>
                                       <td>
-      
+                                      <LinkContainer to={`user/edit/${user.id}`}>
                                           <Button variant='light' className='btn-sm'>
                                               <AiFillEdit/>
                                           </Button>
-                              
+                                          </LinkContainer>
                                         &nbsp;&nbsp;&nbsp;
                                         <Button variant='danger' className='btn-sm' onClick={()=>handleDelete(user.id)}>
                                               <AiOutlineDelete/>
@@ -83,6 +97,7 @@ const UsersTable = ({listUsers, successDelete, goDelete, deleteUser, loading }) 
                                     })}
                                 </tbody>
                               </Table>
+                                )}
                             </CardBody>
                         </Card>
                     </Col>
@@ -94,9 +109,11 @@ const UsersTable = ({listUsers, successDelete, goDelete, deleteUser, loading }) 
 
 const mapStateToProps = state => {
   return {
-    listUsers: state.listUsersData.users,
-    successDelete: state.userDeleteData,
-    loading: state.userDeleteData.loading
+    successDelete: state.userDeleteData.success,
+    loading: state.listUsersData.loading,
+    userLogin: state.loginData.userInfo,
+    listUsersInfo: state.listUsersData.users,
+    successUpdate: state.userAdminUpdateData.success
   };
 };
 UsersTable.propTypes = {
@@ -107,6 +124,9 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteUser: (id) => {
       dispatch(deleteUser(id));
+    },
+    listUsers: () => {
+      dispatch(listUsers());
     }
   };
 };

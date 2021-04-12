@@ -15,7 +15,7 @@ const Product = ({ location, product }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>H2O | Product Page</title>
+        <title>H2O | Trang Chi Tiết Sản Phẩm</title>
         <meta
           name="description"
           content="Trang Chi Tiết Sản Phẩm."

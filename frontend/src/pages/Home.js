@@ -1,14 +1,23 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import MetaTags from "react-meta-tags";
 import Layout from "../layouts/Layout";
 import HeroSlider from "../wrappers/hero-slider/HeroSlider";
 import FeatureIcon from "../wrappers/feature-icon/FeatureIcon";
 import TabProduct from "../wrappers/product/TabProduct";
 import BlogFeatured from "../wrappers/blog-featured/BlogFeatured";
-import { useDispatch, useSelector } from 'react-redux';
+import {listProducts} from '../redux/actions/productActions';
+import {listBlogs} from '../redux/actions/blogActions';
+import { connect } from 'react-redux';
 
-const Home = () => {
+const Home = ({listProducts, listBlogs}) => {
+
+  useEffect(()=>{
+    listProducts();
+    listBlogs();
+  },[])
+  
   return (
+    
     <Fragment>
       
       <MetaTags>
@@ -37,5 +46,15 @@ const Home = () => {
     </Fragment>
   );
 };
-
-export default Home;
+const mapDispatchToProps = dispatch => {
+  
+  return {
+      listProducts: () => {
+      dispatch(listProducts());
+    },
+      listBlogs: () => {
+      dispatch(listBlogs());
+    }
+  };
+}
+export default  connect(null, mapDispatchToProps)(Home);

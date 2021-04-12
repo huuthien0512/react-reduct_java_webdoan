@@ -9,8 +9,10 @@ import BlogPagination from "../wrappers/blog/BlogPagination";
 import BlogPosts from "../wrappers/blog/BlogPosts";
 import { connect } from 'react-redux';
 import { getSortedBlogs } from '../helpers/blog';
+import {listBlogs} from '../redux/actions/blogActions';
 
-const Blog = ({ location, blogs }) => {
+const Blog = ({ location, blogs, listBlogs }) => {
+
   const { pathname } = location;
   const [sortType, setSortType] = useState('');
   const [sortValue, setSortValue] = useState('');
@@ -24,6 +26,11 @@ const Blog = ({ location, blogs }) => {
     setSortType(sortType);
     setSortValue(sortValue);
   }
+
+  useEffect(()=>{
+    listBlogs();
+  },[])
+
   useEffect(() => {
     let sortedBlogs = getSortedBlogs(blogs, sortType, sortValue);
     const filterSortedBlogs = getSortedBlogs(sortedBlogs, filterSortType, filterSortValue);
@@ -81,5 +88,12 @@ const mapStateToProps = (state) => {
     blogs: state.blogData.blogs,
   };
 };
-
-export default connect(mapStateToProps)(Blog);
+const mapDispatchToProps = dispatch => {
+  
+  return {
+      listBlogs: () => {
+      dispatch(listBlogs());
+    }
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Blog);

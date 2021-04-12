@@ -10,11 +10,12 @@ import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import { savePayment } from '../redux/actions/cartActions';
 import { createOrder, getListOrder } from "../redux/actions/orderActions";
+import Message from '../components/Message';
 
-const Checkout = ({ location, cartItems, currency, history, cartData, createOrder, userLogin}) => {
+const Checkout = ({ location, cartItems, currency, history, cartData, createOrder, userLogin, orderInfo}) => {
   const { pathname } = location;
   let cartTotalPrice = 0;
-  //const [payment, setPayment] = useState('Paypal');
+  const [payment, setPayment] = useState('PayPal');
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -24,32 +25,48 @@ const Checkout = ({ location, cartItems, currency, history, cartData, createOrde
   const [city, setCity] = useState('');
   const [telephone, setTelephone] = useState('');
   const [note, setNote] = useState('');
+  
+  const [errorFirstname, setErrorFirstname]= useState('');
+  const [errorLastname, setErrorLastname]= useState('');
+  const [errorEmail, setErrorEmail]= useState('');
+  const [errorAddress, setErrorAddress]= useState('');
+  const [errorCity, setErrorCity]= useState('');
+  const [errorTelephone, setErrorTelephone]= useState('');
+
+  const [status, setStatus]= useState("Chưa thanh toán");
+
   useEffect(() => {
     if (!userLogin) {
       history.push('/login-register');
     }
   }, [userLogin, history]);
+
   var i, total = 0;
   for(i=0; i < cartData.length; i++){
     var t = cartData[i].price*cartData[i].quantity;
     total += (t-(t*cartData[i].discount/100));
   }
+  var tt = total;
   total = (total/23).toFixed(2);
-  localStorage.setItem('totalPrice', total);
+
+  useEffect(() => {
+    setPayment(payment);
+  }, [payment]);
+
+  localStorage.setItem('totalPrice', total)
   const clickHandle= (e) =>{
       const shippingAddress={
         address:address,
         district:district,
         city:city,
+        firstname:firstname,
+        lastname:lastname,
+        email:email,
+        telephone:telephone
       }
-      // const OrderItems={
-      //   // cartData.map(=)
-      //    name:cartData.description[0],
-      //   // qty:cartData.qty,
-      //   // image:cartData.image,
-      //   // price:cartData.price,
-      //   // product:cartData.product,
-      // }
+      const paymentResult={
+        status:status
+      }
       const order={
         orderItems:cartData.map(cart =>{
         const container = {};
@@ -60,16 +77,24 @@ const Checkout = ({ location, cartItems, currency, history, cartData, createOrde
         return container;
         }),
         shippingPrice:0,
-        paymentMethod:"Paypal",
-        totalPrice:5,
+        paymentMethod:payment,
+        paymentResult:paymentResult,
+        totalPrice:tt,
         shippingAddress:shippingAddress,
         userId:userLogin.id,
         note:note
       }
-    
-    createOrder(order);
-    
-    history.push('/paypal')
+      if (firstname != "" && lastname != "" && email!="" && address!="" && district!="" && city!="" && telephone!=""){
+        createOrder(order);
+       
+        if(payment=="PayPal"){
+          history.push('/paypal')
+          
+        }else{
+          history.push('/')
+        }
+      }
+
   }
   return (
     <Fragment>
@@ -90,7 +115,9 @@ const Checkout = ({ location, cartItems, currency, history, cartData, createOrde
         <div className="checkout-area pt-95 pb-100">
           <div className="container">
             {cartItems && cartItems.length >= 1 ? (
+               <form>
               <div className="row">
+               
                 <div className="col-lg-7">
                   <div className="billing-info-wrap">
                     <h3>Thông Tin Thanh Toán</h3>
@@ -101,27 +128,30 @@ const Checkout = ({ location, cartItems, currency, history, cartData, createOrde
                           <input type="text"
                           value={firstname}
                           onChange={(e)=>setFirstname(e.target.value)}
-                          required />
+                          required/>
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Tên</label>
+                          {errorLastname && <Message variant="danger">{errorLastname}</Message>}
                           <input type="text"
                           value={lastname}
                           onChange={(e)=>setLastname(e.target.value)}
-                          required/>
+                          required
+                          />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Email</label>
-                          <input type="text"
+                          <input type="email"
                           value={email}
                           onChange={(e)=>setEmail(e.target.value)}
                           required/>
                         </div>
                       </div>
+                      
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Địa Chỉ</label>
@@ -213,14 +243,14 @@ const Checkout = ({ location, cartItems, currency, history, cartData, createOrde
                                   </span>{" "}
                                   <span className="order-price">
                                     {discountedPrice !== null
-                                      ? (
+                                      ? ((
                                         finalDiscountedPrice *
                                         cartItem.quantity
-                                      ).toFixed(2)*1000 + " " + currency.currencySymbol
+                                      )*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
                                         
-                                      : (
+                                      : ((
                                         finalProductPrice * cartItem.quantity
-                                      ).toFixed(2)*1000 + " " + currency.currencySymbol
+                                      )*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
                                         }
                                    
                                   </span>
@@ -239,7 +269,7 @@ const Checkout = ({ location, cartItems, currency, history, cartData, createOrde
                           <ul>
                             <li className="order-total">Tổng</li>
                             <li>
-                              {cartTotalPrice.toFixed(2)*1000 + " " + currency.currencySymbol
+                              {(cartTotalPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
                                 }
                             </li>
                           </ul>
@@ -256,9 +286,10 @@ const Checkout = ({ location, cartItems, currency, history, cartData, createOrde
                           name='payment'
                           value='PayPal'
                           checked
-                          //onChange={/*(e) => setPayment(e.target.value)*/}
+                         onChange={(e) => setPayment(e.target.value)}
                         ></Form.Check>
                       </Col>
+                      <br></br>
                       {/* <Col>
                         <Form.Check
                           type='radio'
@@ -278,6 +309,7 @@ const Checkout = ({ location, cartItems, currency, history, cartData, createOrde
                   </div>
                 </div>
               </div>
+              </form>
             ) : (
               <div className="row">
                 <div className="col-lg-12">
@@ -313,7 +345,8 @@ const mapStateToProps = state => {
     cartItems: state.cartData,
     currency: state.currencyData,
     cartData: state.cartData,
-    userLogin: state.loginData.userInfo
+    userLogin: state.loginData.userInfo,
+    orderInfo: state.orderCurrent.order
   };
 };
 const mapDispatchToProps = dispatch => {

@@ -1,4 +1,4 @@
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.example.backend.model.Size"><rhs name\="com.example.backend.model.Size"/></lhs><lhs name\="com.example.backend.model.Variation"><rhs name\="com.example.backend.model.Variation"/></lhs><lhs name\="com.fasterxml.jackson.databind.ser.FilterProvider"><rhs name\="com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider"/></lhs></history>
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.example.backend.model.Size"><rhs name\="com.example.backend.model.Size"/></lhs><lhs name\="com.example.backend.model.Variation"><rhs name\="com.example.backend.model.Variation"/></lhs><lhs name\="com.fasterxml.jackson.databind.ser.FilterProvider"><rhs name\="com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider"/></lhs><lhs name\="java.util.Map"><rhs name\="java.util.HashMap"/></lhs></history>
 content_assist_number_of_computers=15
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0

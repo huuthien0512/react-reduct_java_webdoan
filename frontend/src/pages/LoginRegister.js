@@ -11,7 +11,7 @@ import {login, register} from '../redux/actions/userActions';
 import { connect } from "react-redux";
 import Message from '../components/Message';
 
-const LoginRegister = ({ location, login, register, userLogin, history, errorLogin, errorRegister}) => {
+const LoginRegister = ({ location, login, register, userLogin, history, errorLogin, errorRegister, successRegister, messageRegister}) => {
 
   
   const { pathname } = location;
@@ -19,8 +19,6 @@ const LoginRegister = ({ location, login, register, userLogin, history, errorLog
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-
-  const [successRegister, setSuccessRegister] = useState();
   
   useEffect(()=>{
     if(userLogin){
@@ -37,11 +35,14 @@ const LoginRegister = ({ location, login, register, userLogin, history, errorLog
 
   const submitRegisterHandler=(e)=>{
     e.preventDefault();
-    register(username,password, email)
-    if (!errorRegister){
-      setSuccessRegister('Đăng Ký Thành Công')
-      window.location.reload();
-      //history.push('/login-register')
+    const newUserInfo = {
+      username: username,
+      password: password,
+      email:email
+    }
+    register(newUserInfo)
+    if (!errorRegister && successRegister){
+      history.push('/login-register')
     }
 }
 
@@ -123,7 +124,7 @@ const LoginRegister = ({ location, login, register, userLogin, history, errorLog
                         <div className="login-form-container">
                           <div className="login-register-form">
                           {errorRegister && <Message variant="danger">{errorRegister}</Message>}
-                          {successRegister && <Message>{successRegister}</Message>}
+                          {messageRegister && <Message>{messageRegister}</Message>}
                             <form onSubmit={submitRegisterHandler}>
                               <input
                                 type="text"
@@ -183,7 +184,9 @@ const mapStateToProps = state => {
   return {
     userLogin: state.loginData.userInfo,
     errorLogin: state.loginData.error,
-    errorRegister: state.registerData.error
+    errorRegister: state.registerData.error,
+    successRegister: state.registerData.success,
+    messageRegister: state.registerData.message,
   };
 };
 const mapDispatchToProps = dispatch => {

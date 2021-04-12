@@ -10,8 +10,9 @@ import Breadcrumb from '../wrappers/breadcrumb/Breadcrumb';
 import ShopSidebar from '../wrappers/product/ShopSidebar';
 import ShopTopbar from '../wrappers/product/ShopTopbar';
 import ShopProducts from '../wrappers/product/ShopProducts';
+import {listProducts} from '../redux/actions/productActions';
 
-const Shop = ({location, products}) => {
+const Shop = ({location, products, listProducts}) => {
     const [layout, setLayout] = useState('grid three-column');
     const [sortType, setSortType] = useState('');
     const [sortValue, setSortValue] = useState('');
@@ -26,6 +27,10 @@ const Shop = ({location, products}) => {
     
     const pageLimit = 9;
     const {pathname} = location;
+
+    useEffect(()=>{
+        listProducts();
+    },[])
 
     const getLayout = (layout) => {
         setLayout(layout)
@@ -53,8 +58,7 @@ const Shop = ({location, products}) => {
         sortedProducts = filterSortedProducts;
         setSortedProducts(sortedProducts);
         setCurrentData(searchedProducts ? searchedProducts.slice(offset, offset + pageLimit): sortedProducts.slice(offset, offset + pageLimit));
-        // setSortedProducts(sortedProducts);
-        // setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
+
     }, [offset, products, sortType, sortValue, filterSortType, filterSortValue, searchedProducts ]);
 
     return (
@@ -118,5 +122,13 @@ const mapStateToProps = state => {
         products: state.productData.products,
     }
 }
+const mapDispatchToProps = dispatch => {
+  
+    return {
+        listProducts: () => {
+        dispatch(listProducts());
+      }
+    };
+  };
 
-export default connect(mapStateToProps)(Shop);
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

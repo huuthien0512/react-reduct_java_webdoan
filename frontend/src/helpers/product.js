@@ -1,11 +1,6 @@
 // get products
 export const getProducts = (products, category, type, limit) => {
   const finalProducts = products
-  // category
-  //   ? products.filter(
-  //       product => product.category.filter(single => single === category)[0]
-  //     )
-  //   : products;
 
   if (type && type === "sanphammoi") {
     const newProducts = finalProducts.filter(single => single.isNew);

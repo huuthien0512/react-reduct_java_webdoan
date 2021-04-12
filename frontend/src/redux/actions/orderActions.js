@@ -19,6 +19,9 @@ import {
     ORDER_DELIVERED_SUCCESS,
     ORDER_DELIVERED_FAIL,
     ORDER_DELIVERED_RESET,
+    ORDER_UPDATE_REQUEST,
+    ORDER_UPDATE_SUCCESS,
+    ORDER_UPDATE_FAIL,
   } from '../constants/orderConstants';
   import {BASE_URL} from '../constants/URL_SERVER';
   import axios from 'axios';
@@ -34,6 +37,8 @@ import {
     //     },
     //   };
       const { data } = await axios.post(`${BASE_URL}/order/create`, order);
+      localStorage.setItem("orderId", data.id);
+      console.log(localStorage.getItem("orderId"))
       dispatch({
         type: ORDER_CREATE_SUCCESS,
         payload: data,
@@ -50,15 +55,15 @@ import {
   export const getOrderDetails = (id) => async (dispatch, getState) => {
     try {
       dispatch({ type: ORDER_DETAILS_REQUEST });
-      const {
-        userLogin: { userInfo },
-      } = getState();
-      const config = {
-        headers: {
-          Authorization: userInfo.token,
-        },
-      };
-      const { data } = await axios.get(`/api/orders/${id}`, config);
+      // const {
+      //   userLogin: { userInfo },
+      // } = getState();
+      // const config = {
+      //   headers: {
+      //     Authorization: userInfo.token,
+      //   },
+      // };
+      const { data } = await axios.get(`${BASE_URL}/order/${id}`);
       dispatch({
         type: ORDER_DETAILS_SUCCESS,
         payload: data,
@@ -66,8 +71,7 @@ import {
     } catch (error) {
       dispatch({
         type: ORDER_DETAILS_FAIL,
-        // payload:error.response && error.response.data.msg
-        payload: error.response && error.response.data.msg,
+        payload: error.response && error.response.data,
       });
     }
   };
@@ -97,17 +101,88 @@ import {
     }
   };
   
-  
-  export const getListOrder = () => async (dispatch, getState) => {
+  export const listOrders = () => async (dispatch) => {
     try {
-      dispatch({ type: ORDER_LIST_REQUEST });
-      const userLogin = getState().loginData.userInfo;
+      dispatch({ type: ORDER_LIST_ALL_REQUEST });
+  // const userLogin = getState().loginData.userInfo;
       // const config = {
       //   headers: {
       //     Authorization: userInfo.token,
       //   },
       // };
-      const { data } = await axios.get(`${BASE_URL}/order/of/${userLogin.id}`);
+      const { data } = await axios.get(`${BASE_URL}/orders`);
+      dispatch({
+        type: ORDER_LIST_ALL_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ORDER_LIST_ALL_FAIL,
+        // payload:error.response && error.response.data.msg
+        payload: error.response && error.response.data,
+      });
+    }
+  };
+
+  export const updateOrder = (order, id) => async (dispatch) => {
+    try {
+      dispatch({ type: ORDER_UPDATE_REQUEST });
+  // const userLogin = getState().loginData.userInfo;
+      // const config = {
+      //   headers: {
+      //     Authorization: userInfo.token,
+      //   },
+      // };
+      console.log(order)
+      const { data } = await axios.put(`${BASE_URL}/order/admin/update/${id}`, order);
+      dispatch({
+        type: ORDER_UPDATE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ORDER_UPDATE_FAIL,
+        // payload:error.response && error.response.data.msg
+        payload: error.response && error.response.data,
+      });
+    }
+  };
+
+  export const updateStatus = (id) => async (dispatch) => {
+    try {
+      console.log(id)
+      dispatch({ type: ORDER_UPDATE_REQUEST });
+  // const userLogin = getState().loginData.userInfo;
+      // const config = {
+      //   headers: {
+      //     Authorization: userInfo.token,
+      //   },
+      // };
+      const { data } = await axios.put(`${BASE_URL}/order/status/update/${id}`);
+      dispatch({
+        type: ORDER_UPDATE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ORDER_UPDATE_FAIL,
+        // payload:error.response && error.response.data.msg
+        payload: error.response && error.response.data,
+      });
+    }
+  };
+  
+  export const getMyListOrder = (userId) => async (dispatch, getState) => {
+    try {
+      console.log(userId)
+      dispatch({ type: ORDER_LIST_REQUEST });
+    //  const userLogin = getState().loginData.userInfo;
+      // const config = {
+      //   headers: {
+      //     Authorization: userInfo.token,
+      //   },
+      // };
+      const { data } = await axios.get(`${BASE_URL}/order/of/${userId}`);
       dispatch({
         type: ORDER_LIST_SUCCESS,
         payload: data,
@@ -115,8 +190,7 @@ import {
     } catch (error) {
       dispatch({
         type: ORDER_LIST_FAIL,
-        // payload:error.response && error.response.data.msg
-        payload: error.response && error.response.data.msg,
+        payload: error.response && error.response.data,
       });
     }
   };

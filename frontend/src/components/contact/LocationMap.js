@@ -9,9 +9,10 @@ const FooterMap = props => {
   };
 
   return (
+    
     <Map
       google={props.google}
-      zoom={10}
+      zoom={18}
       style={mapStyles}
       initialCenter={{ lat: props.latitude, lng: props.longitude }}
     >
@@ -33,5 +34,5 @@ FooterMap.propTypes = {
 };
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyB2D8wrWMY3XZnuHO6C31uq90JiuaFzGws"
+  apiKey: "AIzaSyBplTsCMS6vsSJN4y_XLsKulNgKRDJanJ4"
 })(FooterMap);

@@ -102,8 +102,8 @@ public class Product {
 		return category;
 	}
 
-	public void setCategory(String[] category) {
-		this.category = category;
+	public void setCategory(String[] strings) {
+		this.category = strings;
 	}
 
 	public String[] getImage() {

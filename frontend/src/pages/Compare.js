@@ -148,15 +148,15 @@ const Compare = ({
                                   {discountedPrice !== null ? (
                                     <Fragment>
                                       <span className="amount old">
-                                        {finalProductPrice*1000 + " " + currency.currencySymbol}
+                                        {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
                                       </span>
                                       <span className="amount">
-                                        {finalDiscountedPrice*1000 + " " + currency.currencySymbol}
+                                        {(finalDiscountedPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
                                       </span>
                                     </Fragment>
                                   ) : (
                                     <span className="amount">
-                                      {finalProductPrice*1000 + " " + currency.currencySymbol}
+                                      {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
                                     </span>
                                   )}
                                 </td>

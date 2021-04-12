@@ -1,20 +1,22 @@
 package com.example.backend.model;
 
+import java.util.Date;
+
 //@Document(collection = "PaymentResuls")
 public class PaymentResult {
 	
-	private String status="";
-	private String update_time="";
-	private String email_address="";
+	private String status;
+	private Date updateTime;
+	private String userUpdate;
 	public PaymentResult() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PaymentResult(String status, String update_time, String email_address) {
+	public PaymentResult(String status, Date updateTime, String userUpdate) {
 		super();
 		this.status = status;
-		this.update_time = update_time;
-		this.email_address = email_address;
+		this.updateTime = updateTime;
+		this.userUpdate = userUpdate;
 	}
 	public String getStatus() {
 		return status;
@@ -22,16 +24,16 @@ public class PaymentResult {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getUpdate_time() {
-		return update_time;
+	public Date getUpdateTime() {
+		return updateTime;
 	}
-	public void setUpdate_time(String update_time) {
-		this.update_time = update_time;
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
-	public String getEmail_address() {
-		return email_address;
+	public String getUserUpdate() {
+		return userUpdate;
 	}
-	public void setEmail_address(String email_address) {
-		this.email_address = email_address;
+	public void setUserUpdate(String userUpdate) {
+		this.userUpdate = userUpdate;
 	}
 }

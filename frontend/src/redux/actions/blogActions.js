@@ -6,7 +6,7 @@ import {
   FETCH_BLOGS_REQUEST} from '../constants/blogConstants'
 import {BASE_URL} from '../constants/URL_SERVER';
 
-export const fetchBlogs = () => async(dispatch) => {
+export const listBlogs = () => async(dispatch) => {
   try {
     dispatch({ type: FETCH_BLOGS_REQUEST });
     const {data} = await axios.get(`${BASE_URL}/blogs`);

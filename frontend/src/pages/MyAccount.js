@@ -9,11 +9,21 @@ import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
 import { connect } from "react-redux";
 import  { Redirect } from 'react-router-dom'
 import { updateProfile, updatePassword } from "../redux/actions/userActions";
+import { getMyListOrder } from "../redux/actions/orderActions";
+
+import Message from '../components/Message';
+import Loader from '../admin/DemoPages/Components/Loader';
+import { Button, Table } from 'react-bootstrap';
+import {
+  Row, Col,
+  CardBody,
+  CardTitle
+} from 'reactstrap';
+import {AiFillCheckCircle,AiOutlineCloseCircle,AiFillEdit,AiOutlineDelete} from 'react-icons/ai'
 
 
-const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword}) => {
+const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword, loadingUpdateProfile, messageUpdateProfile, loadingUpdatePassword, messageUpdatePassword, errorUpdatePassword, myOrderList, getMyListOrder}) => {
   const { pathname } = location;
-  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -24,8 +34,11 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
   const [telephone, setTelephone] = useState('');
 
   useEffect(() => {
+    getMyListOrder(userLogin.id);
+  }, [])
+
+  useEffect(() => {
     if (userLogin) {
-      console.log(userLogin.username)
       setUsername(userLogin.username);
       setFirstname(userLogin.firstname);
       setLastname(userLogin.lastname);
@@ -34,29 +47,37 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
     } else {
       history.push('/login-register');
     }
-  }, [userLogin, Redirect, history]);
-
-  const newInfo={
-    firstname:firstname,
-    lastname:lastname,
-    password:password,
-    email:email,
-    telephone:telephone,
-  }
-
-  const newInfoPassword={
-    password:newPassword,
-  }
+  }, [userLogin, history]);
 
   const submitHandlerUpdateProfile=(e)=>{
     e.preventDefault();
-      updateProfile(newInfo, userLogin);
+    const newInfo={
+      firstname:firstname,
+      lastname:lastname,
+      password:password,
+      email:email,
+      telephone:telephone,
+    }
+    updateProfile(newInfo, userLogin.id);
+  }
+
+  const handlePayment = (orderId, orderPrice) =>{
+    localStorage.setItem("orderId", orderId);
+    localStorage.setItem("totalPrice", (orderPrice/23).toFixed(2));
+    history.push('/paypal');
+  } 
+
+  const newInfoPassword={
+    password:password,
+    newPassword:newPassword,
+    confirmNewPassword:confirmNewPassword
   }
 
   const submitHandlerUpdatePassword=(e)=>{
-    if (newPassword == confirmNewPassword){
+   
+    if (password != "" && newPassword != "" && confirmNewPassword !=""){
       e.preventDefault();
-      updatePassword(newInfoPassword, userLogin);
+      updatePassword(newInfoPassword, userLogin.id);
     }
     
   }
@@ -97,6 +118,8 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
                             <div className="account-info-wrapper">
                               <h4>Thông tin tài khoản của bạn</h4>
                             </div>
+                            {messageUpdateProfile && messageUpdateProfile? <Message>{messageUpdateProfile}</Message> : ""}
+                            {loadingUpdateProfile && loadingUpdateProfile ? <Loader/> :(
                             <div className="row">
                               <div className="col-lg-6 col-md-6">
                                 <div className="billing-info">
@@ -134,6 +157,7 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
                                 </div>
                               </div>
                             </div>
+                            )}
                             <div className="billing-back-btn">
                               <div className="billing-btn">
                                 <button type="submit" onClick={submitHandlerUpdateProfile}>Cập nhật</button>
@@ -151,16 +175,27 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
                           </h3>
                         </Accordion.Toggle>
                       </Card.Header>
+                      
                       <Accordion.Collapse eventKey="1">
                         <Card.Body>
+                        <form>
                           <div className="myaccount-info-wrapper">
+                          {errorUpdatePassword && errorUpdatePassword? <Message variant="danger">{errorUpdatePassword}</Message> : ""}
+                          {messageUpdatePassword && messageUpdatePassword? <Message>{messageUpdatePassword}</Message> : ""}
+                          {loadingUpdatePassword && loadingUpdatePassword ? <Loader/> :(
+                             
                             <div className="row">
                               <div className="col-lg-12 col-md-12">
                                 <div className="billing-info">
                                   <label>Mật khẩu hiện tại</label>
+                                 
                                   <input type="password" 
                                   value={password}
-                                  onChange={(e)=>setPassword(e.target.value)}/>
+                                  
+                                  onChange={(e)=>setPassword(e.target.value)}
+                                  required
+                                  />
+                                  
                                 </div>
                               </div>
                               <div className="col-lg-12 col-md-12">
@@ -168,7 +203,8 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
                                   <label>Mật khẩu mới</label>
                                   <input type="password" 
                                   value={newPassword}
-                                  onChange={(e)=>setNewPassword(e.target.value)}/>
+                                  onChange={(e)=>setNewPassword(e.target.value)}
+                                  required/>
                                 </div>
                               </div>
                               <div className="col-lg-12 col-md-12">
@@ -176,18 +212,87 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
                                   <label>Nhập lại mật khẩu mới</label>
                                   <input type="password" 
                                   value={confirmNewPassword}
-                                  onChange={(e)=>setConfirmNewPassword(e.target.value)}/>
+                                  onChange={(e)=>setConfirmNewPassword(e.target.value)}
+                                  required/>
                                 </div>
                               </div>
                             </div>
+                            
+                            )}
                             <div className="billing-back-btn">
                               <div className="billing-btn">
                                 <button type="submit" onClick={submitHandlerUpdatePassword}>Thay đổi</button>
                               </div>
                             </div>
+                            
                           </div>
+                          </form>
                         </Card.Body>
+                        
                       </Accordion.Collapse>
+                      
+                      
+                    </Card>
+
+                    <Card className="single-my-account mb-20">
+                      <Card.Header className="panel-heading">
+                        <Accordion.Toggle variant="link" eventKey="2">
+                          <h3 className="panel-title">
+                            <span>3 .</span> Đơn hàng của tôi
+                          </h3>
+                        </Accordion.Toggle>
+                      </Card.Header>
+                      
+                      <Accordion.Collapse eventKey="2">
+                        <Card.Body>
+                        <CardTitle>Danh Sách Orders</CardTitle>
+            
+                                <Table striped bordered hover responsive className='table-sm mb-0' bordered>
+                                <thead>
+                                  <tr align="center">
+                                    <th>#</th>
+                                    <th>ID</th>
+                                    <th>Thanh toán</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Thanh toán ?</th>
+                                    <th>Thời gian thanh toán</th>
+                                    <th>Đã giao ?</th>
+                                    <th>Thời gian giao</th>
+                                    <th>Thanh toán</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {myOrderList && myOrderList.map((order, key) => {
+                                    return(
+                                    <tr align="center" >
+                                      <th scope="row">{key}</th>
+                                      <td >{order.id}</td>
+                                      <td>{order.paymentMethod}</td>
+                                      <td>{order.totalPrice}</td>
+                                      <td>{order.isPaid?<AiFillCheckCircle/>:<AiOutlineCloseCircle/>}</td>
+                                      <td>{order.isPaid?order.paidAt.substring(0, 10):""}</td>
+                                      <td>{order.isDelivered?<AiFillCheckCircle/>:<AiOutlineCloseCircle/>}</td>
+                                      <td>{order.isDelivered?order.deliveredAt.substring(0, 10):""}</td>
+                                      <td>
+                                          {!order.isPaid?
+                                          <Button variant='light' className='btn-sm' onClick={()=>handlePayment(order.id, order.totalPrice)}>
+                                              <AiFillEdit/>
+                                          </Button>
+                                          :
+                                          ""}
+                                         
+  
+                                      </td>
+                                    </tr>
+                                        );
+                                      })}
+                                  </tbody>
+                                </Table>
+                        </Card.Body>
+                        
+                      </Accordion.Collapse>
+                      
+                      
                     </Card>
                   </Accordion>
                 </div>
@@ -204,16 +309,25 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
 const mapStateToProps = state => {
   return {
     userLogin: state.loginData.userInfo,
+    loadingUpdateProfile: state.userUpdateProfileData.loading,
+    messageUpdateProfile: state.userUpdateProfileData.message,
+    loadingUpdatePassword: state.userUpdatePasswordData.loading,
+    messageUpdatePassword: state.userUpdatePasswordData.message,
+    errorUpdatePassword: state.userUpdatePasswordData.error,
+    myOrderList: state.myOrderListData.orders
   };
 };
 const mapDispatchToProps = dispatch => {
   
   return {
-    updateProfile: (newInfo, userLogin) => {
-      dispatch(updateProfile(newInfo, userLogin));
+    updateProfile: (newInfo, id) => {
+      dispatch(updateProfile(newInfo, id));
     },
     updatePassword: (newInfoPassword, userLogin) => {
       dispatch(updatePassword(newInfoPassword, userLogin));
+    },
+    getMyListOrder: (id)=>{
+      dispatch(getMyListOrder(id));
     }
   };
 };

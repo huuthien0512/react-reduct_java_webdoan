@@ -19,7 +19,6 @@ const ShopSearch = ({getSearchProducts, searchedProducts, searchProducts, produc
           <button onClick={(e) => {
                     e.preventDefault();
                     searchProducts(searchString);
-                    
                   }}>
             <i className="pe-7s-search" />
           </button>

@@ -116,13 +116,13 @@ const ProductGridSingle = ({
             <div className="product-price">
               {discountedPrice !== null ? (
                 <Fragment>
-                  <span>{finalDiscountedPrice*1000 + " " + currency.currencySymbol}</span>{" "}
+                  <span>{(finalDiscountedPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</span>{" "}
                   <span className="old">
-                    {finalProductPrice*1000 + " " + currency.currencySymbol}
+                    {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
                   </span>
                 </Fragment>
               ) : (
-                <span>{finalProductPrice*1000 + " " + currency.currencySymbol} </span>
+                <span>{(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} </span>
               )}
             </div>
           </div>

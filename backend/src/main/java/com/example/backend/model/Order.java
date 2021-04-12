@@ -12,13 +12,13 @@ public class Order {
 	private OrderItems[] orderItems;
 	private ShippingAddress shippingAddress;
 	private String paymentMethod;
-	private PaymentResult paymentResult=new PaymentResult("", "", "");
+	private PaymentResult paymentResult;
 	private float shippingPrice;
 	private float totalPrice;
 	private boolean isPaid;
-	private Date paidAt= new Date();
+	private Date paidAt;
 	private boolean isDelivered;
-	private Date deliveredAt= new Date();
+	private Date deliveredAt;
 	private String note;
 	private String userId;
 	public Order() {
@@ -81,10 +81,10 @@ public class Order {
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public boolean isPaid() {
+	public boolean getIsPaid() {
 		return isPaid;
 	}
-	public void setPaid(boolean isPaid) {
+	public void setIsPaid(boolean isPaid) {
 		this.isPaid = isPaid;
 	}
 	public Date getPaidAt() {
@@ -93,10 +93,10 @@ public class Order {
 	public void setPaidAt(Date paidAt) {
 		this.paidAt = paidAt;
 	}
-	public boolean isDelivered() {
+	public boolean getIsDelivered() {
 		return isDelivered;
 	}
-	public void setDelivered(boolean isDelivered) {
+	public void setIsDelivered(boolean isDelivered) {
 		this.isDelivered = isDelivered;
 	}
 	public Date getDeliveredAt() {

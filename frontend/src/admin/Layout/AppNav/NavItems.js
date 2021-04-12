@@ -1,8 +1,8 @@
 export const MainNav = [
     {
         icon: 'pe-7s-rocket',
-        label: 'Dashboard Example',
-        to: '#/dashboards/basic',
+        label: 'Dashboard',
+        to: '#/dashboards',
     },
 ];
 export const Users = [
@@ -10,6 +10,27 @@ export const Users = [
         icon: 'pe-7s-users',
         label: 'Users',
         to: '#/users',
+    },
+];
+export const Products = [
+    {
+        icon: 'pe-7s-plane',
+        label: 'Products',
+        to: '#/products',
+    },
+];
+export const Orders = [
+    {
+        icon: 'pe-7s-plane',
+        label: 'Orders',
+        to: '#/orders',
+    },
+];
+export const Logout = [
+    {
+        icon: 'pe-7s-plane',
+        label: 'Logout',
+        to: '/',
     },
 ];
 export const ComponentsNav = [

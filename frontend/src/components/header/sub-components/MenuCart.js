@@ -51,8 +51,8 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                     <h6>Số lượng: {single.quantity}</h6>
                     <span>
                       {discountedPrice !== null
-                        ? finalDiscountedPrice*1000 + " " + currency.currencySymbol
-                        : finalProductPrice*1000 + " " + currency.currencySymbol}
+                        ? (finalDiscountedPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
+                        : (finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
                     </span>
                   </div>
                   <div className="shopping-cart-delete">
@@ -68,7 +68,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
             <h4>
               Total :{" "}
               <span className="shop-total">
-                {cartTotalPrice.toFixed(2)*1000 + " " + currency.currencySymbol}
+                {(cartTotalPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
               </span>
             </h4>
           </div>

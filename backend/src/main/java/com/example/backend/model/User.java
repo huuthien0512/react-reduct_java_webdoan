@@ -1,5 +1,7 @@
 package com.example.backend.model;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,6 +18,7 @@ public class User {
 	private String lastname;
 	private String telephone;
 	private boolean isAdmin;
+	private Date timeCreate;
 	
 	public User() {
 		super();
@@ -91,6 +94,14 @@ public class User {
 
 	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+	
+	public Date getTimeCreate() {
+		return timeCreate;
+	}
+
+	public void setTimeCreate(Date timeCreate) {
+		this.timeCreate = timeCreate;
 	}
 	
 }
