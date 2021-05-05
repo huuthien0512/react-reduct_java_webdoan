@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Layout from "../layouts/Layout";
-import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
+import Breadcrumb from "../wrappers/Breadcrumb";
 
 const NotFound = ({ location }) => {
   const { pathname } = location;

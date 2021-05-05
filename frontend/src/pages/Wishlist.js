@@ -13,7 +13,7 @@ import {
 } from "../redux/actions/wishlistActions";
 import { addToCart } from "../redux/actions/cartActions";
 import Layout from "../layouts/Layout";
-import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
+import Breadcrumb from "../wrappers/Breadcrumb";
 
 const Wishlist = ({
   location,

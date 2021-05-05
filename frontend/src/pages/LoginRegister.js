@@ -6,7 +6,7 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import Layout from "../layouts/Layout";
-import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
+import Breadcrumb from "../wrappers/Breadcrumb";
 import {login, register} from '../redux/actions/userActions';
 import { connect, useDispatch } from "react-redux";
 import Message from '../components/Message';

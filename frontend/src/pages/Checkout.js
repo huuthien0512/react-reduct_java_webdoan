@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import { getDiscountPrice } from "../helpers/product";
 import Layout from "../layouts/Layout";
-import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
+import Breadcrumb from "../wrappers/Breadcrumb";
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import { savePayment } from '../redux/actions/cartActions';
 import { createOrder, getListOrder } from "../redux/actions/orderActions";

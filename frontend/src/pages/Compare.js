@@ -9,7 +9,7 @@ import { addToCart } from "../redux/actions/cartActions";
 import { deleteFromCompare } from "../redux/actions/compareActions";
 import { getDiscountPrice } from "../helpers/product";
 import Layout from "../layouts/Layout";
-import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
+import Breadcrumb from "../wrappers/Breadcrumb";
 import Rating from "../components/product/sub-components/ProductRating";
 
 const Compare = ({

@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from "react";
 import MetaTags from "react-meta-tags";
 import Layout from "../layouts/Layout";
-import HeroSlider from "../wrappers/hero-slider/HeroSlider";
-import FeatureIcon from "../wrappers/feature-icon/FeatureIcon";
-import TabProduct from "../wrappers/product/TabProduct";
-import BlogFeatured from "../wrappers/blog-featured/BlogFeatured";
+import HeroSlider from "../wrappers/HeroSlider";
+import FeatureIcon from "../wrappers/FeatureIcon";
+import TabProduct from "../wrappers/TabProduct";
+import BlogFeatured from "../wrappers/BlogFeatured";
 import {listProducts} from '../redux/actions/productActions';
 import {listBlogs} from '../redux/actions/blogActions';
 import { connect } from 'react-redux';

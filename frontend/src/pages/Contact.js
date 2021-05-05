@@ -3,8 +3,8 @@ import React, { Fragment } from "react";
 import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Layout from "../layouts/Layout";
-import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
-import LocationMap from "../components/contact/LocationMap";
+import Breadcrumb from "../wrappers/Breadcrumb";
+import LocationMap from "../components/LocationMap";
 
 const Contact = ({ location }) => {
   const { pathname } = location;

@@ -6,10 +6,10 @@ import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import { connect } from 'react-redux';
 import { getSortedProducts } from '../helpers/product';
 import Layout from '../layouts/Layout';
-import Breadcrumb from '../wrappers/breadcrumb/Breadcrumb';
-import ShopSidebar from '../wrappers/product/ShopSidebar';
-import ShopTopbar from '../wrappers/product/ShopTopbar';
-import ShopProducts from '../wrappers/product/ShopProducts';
+import Breadcrumb from '../wrappers/Breadcrumb';
+import ShopSidebar from '../wrappers/ShopSidebar';
+import ShopTopbar from '../wrappers/ShopTopbar';
+import ShopProducts from '../wrappers/ShopProducts';
 import {listProducts} from '../redux/actions/productActions';
 
 const Shop = ({location, products, listProducts}) => {

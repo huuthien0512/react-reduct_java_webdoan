@@ -4,10 +4,10 @@ import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import { connect } from "react-redux";
 import Layout from "../layouts/Layout";
-import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
-import RelatedProductSlider from "../wrappers/product/RelatedProductSlider";
-import ProductDescriptionTab from "../wrappers/product/ProductDescriptionTab";
-import ProductImageDescription from "../wrappers/product/ProductImageDescription";
+import Breadcrumb from "../wrappers/Breadcrumb";
+import RelatedProductSlider from "../wrappers/RelatedProductSlider";
+import ProductDescriptionTab from "../wrappers/ProductDescriptionTab";
+import ProductImageDescription from "../wrappers/ProductImageDescription";
 
 const Product = ({ location, product }) => {
   const { pathname } = location;

@@ -14,7 +14,7 @@ import {
   deleteAllFromCart
 } from "../redux/actions/cartActions";
 import Layout from "../layouts/Layout";
-import Breadcrumb from "../wrappers/breadcrumb/Breadcrumb";
+import Breadcrumb from "../wrappers/Breadcrumb";
 
 const Cart = ({
   location,
