@@ -87,7 +87,7 @@ const App = ({ userLogin }) => {
                   component={MyAccount}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/login-register/:tab"}
+                  path={process.env.PUBLIC_URL + "/login-register"}
                   component={LoginRegister}
                 />
 

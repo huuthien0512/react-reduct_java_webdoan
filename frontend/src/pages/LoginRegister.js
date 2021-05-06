@@ -20,7 +20,7 @@ const LoginRegister = ({ match, location, login, register, userLogin, history, m
   const [email, setEmail] = useState('');
   useEffect(() => {
     if (userLogin) {
-      // history.push('/')
+       history.push('/')
     }
 
   }, [history, userLogin]);
@@ -66,7 +66,8 @@ const LoginRegister = ({ match, location, login, register, userLogin, history, m
             <div className="row">
               <div className="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div className="login-register-wrapper">
-                  <Tab.Container defaultActiveKey={tab && tab == 1 ? "login" : "register"}>
+                  {/* <Tab.Container defaultActiveKey={tab && tab == 1 ? "login" : "register"}> */}
+                  <Tab.Container defaultActiveKey="login">
                     <Nav variant="pills" className="login-register-tab-list">
                       <Nav.Item>
                         <Nav.Link eventKey="login" id="dangnhap">
@@ -83,7 +84,7 @@ const LoginRegister = ({ match, location, login, register, userLogin, history, m
                       <Tab.Pane eventKey="login" >
                         <div className="login-form-container">
                           <div className="login-register-form">
-                            {messageLogin && successLogin === true ? <span id="messageLogin"><Message >{messageLogin}</Message></span> :
+                            {messageLogin && successLogin == true ? <span id="messageLogin"><Message >{messageLogin}</Message></span> :
                               messageLogin ? <span id="messageLogin"><Message variant="danger">{messageLogin}</Message></span> : ""}
                             <form onSubmit={submitHandler}>
                               <input

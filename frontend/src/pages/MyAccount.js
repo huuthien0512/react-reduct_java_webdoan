@@ -70,7 +70,7 @@ const MyAccount = ({ history, location, userLogin, updateProfile, updatePassword
 
   const submitHandlerUpdatePassword = (e) => {
 
-    if (password !== "" && newPassword !== "" && confirmNewPassword !== "") {
+    if (password != "" && newPassword != "" && confirmNewPassword != "") {
       e.preventDefault();
       updatePassword(newInfoPassword, userLogin.id);
     }
