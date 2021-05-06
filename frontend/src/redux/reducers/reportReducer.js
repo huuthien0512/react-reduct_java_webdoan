@@ -16,12 +16,12 @@ import {
   REPORT_NUM_ORDER_FAIL
 } from '../constants/reportConstants';
 
-export const income = (state = {money:[]}, action) => {
+export const income = (state = { money: [] }, action) => {
   switch (action.type) {
     case REPORT_INCOME_REQUEST:
-      return {...state,loading: true };
+      return { ...state, loading: true };
     case REPORT_INCOME_SUCCESS:
-      return { loading: false, money:action.payload};
+      return { loading: false, money: action.payload };
     case REPORT_INCOME_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -29,12 +29,12 @@ export const income = (state = {money:[]}, action) => {
   }
 };
 
-export const numOfUser = (state = {money:[]}, action) => {
+export const numOfUser = (state = { money: [] }, action) => {
   switch (action.type) {
     case REPORT_NUM_USER_REQUEST:
-      return {...state,loading: true };
+      return { ...state, loading: true };
     case REPORT_NUM_USER_SUCCESS:
-      return { loading: false, number:action.payload};
+      return { loading: false, number: action.payload };
     case REPORT_NUM_USER_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -42,12 +42,12 @@ export const numOfUser = (state = {money:[]}, action) => {
   }
 };
 
-export const numOfProduct = (state = {sum:[]}, action) => {
+export const numOfProduct = (state = { sum: [] }, action) => {
   switch (action.type) {
     case REPORT_NUM_PRODUCT_REQUEST:
-      return {...state,loading: true };
+      return { ...state, loading: true };
     case REPORT_NUM_PRODUCT_SUCCESS:
-      return { loading: false, sum:action.payload};
+      return { loading: false, sum: action.payload };
     case REPORT_NUM_PRODUCT_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -55,12 +55,12 @@ export const numOfProduct = (state = {sum:[]}, action) => {
   }
 };
 
-export const numOfBlog = (state = {sum:[]}, action) => {
+export const numOfBlog = (state = { sum: [] }, action) => {
   switch (action.type) {
     case REPORT_NUM_BLOG_REQUEST:
-      return {...state,loading: true };
+      return { ...state, loading: true };
     case REPORT_NUM_BLOG_SUCCESS:
-      return { loading: false, sum:action.payload};
+      return { loading: false, sum: action.payload };
     case REPORT_NUM_BLOG_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -68,12 +68,12 @@ export const numOfBlog = (state = {sum:[]}, action) => {
   }
 };
 
-export const numOfOrder = (state = {number:[]}, action) => {
+export const numOfOrder = (state = { number: [] }, action) => {
   switch (action.type) {
     case REPORT_NUM_ORDER_REQUEST:
-      return {...state,loading: true };
+      return { ...state, loading: true };
     case REPORT_NUM_ORDER_SUCCESS:
-      return { loading: false, number:action.payload};
+      return { loading: false, number: action.payload };
     case REPORT_NUM_ORDER_FAIL:
       return { loading: false, error: action.payload };
     default:

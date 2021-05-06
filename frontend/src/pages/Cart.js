@@ -81,9 +81,9 @@ const Cart = ({
 
                             discountedPrice != null
                               ? (cartTotalPrice +=
-                                  finalDiscountedPrice * cartItem.quantity)
+                                finalDiscountedPrice * cartItem.quantity)
                               : (cartTotalPrice +=
-                                  finalProductPrice * cartItem.quantity);
+                                finalProductPrice * cartItem.quantity);
                             return (
                               <tr key={key}>
                                 <td className="product-thumbnail">
@@ -121,15 +121,15 @@ const Cart = ({
                                   {discountedPrice !== null ? (
                                     <Fragment>
                                       <span className="amount old">
-                                        {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                        {(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                       </span>
                                       <span className="amount">
-                                        {(finalDiscountedPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                        {(finalDiscountedPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                       </span>
                                     </Fragment>
                                   ) : (
                                     <span className="amount">
-                                      {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                      {(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                     </span>
                                   )}
                                 </td>
@@ -163,9 +163,9 @@ const Cart = ({
                                         cartItem !== undefined &&
                                         cartItem.quantity &&
                                         cartItem.quantity >=
-                                          cartItemStock(
-                                            cartItem
-                                          )
+                                        cartItemStock(
+                                          cartItem
+                                        )
                                       }
                                     >
                                       +
@@ -174,14 +174,14 @@ const Cart = ({
                                 </td>
                                 <td className="product-subtotal">
                                   {discountedPrice !== null
-                                    ? 
-                                      (
-                                        (finalDiscountedPrice * cartItem.quantity
-                                      )*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})
-                                    : 
-                                      ((
-                                        finalProductPrice * cartItem.quantity
-                                      )*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} 
+                                    ?
+                                    (
+                                      (finalDiscountedPrice * cartItem.quantity
+                                      ) * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })
+                                    :
+                                    ((
+                                      finalProductPrice * cartItem.quantity
+                                    ) * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                 </td>
 
                                 <td className="product-remove">
@@ -222,7 +222,7 @@ const Cart = ({
 
                 <div className="row">
                   <div className="col-lg-4 col-md-6">
-                     {/*<div className="cart-tax">
+                    {/*<div className="cart-tax">
                       <div className="title-wrap">
                         <h4 className="cart-bottom-title section-bg-gray">
                           Thông Tin Giao Hàng
@@ -247,11 +247,11 @@ const Cart = ({
                               <option>Ấn Độ</option>
                               <option>Thái Lan</option>
                             </select> */}
-                          {/* </div>
+                    {/* </div>
                           <div className="tax-select">
                             <label>* Quận / Huyện</label>
                             <input type="text" /> */}
-                            {/* <select className="email s-email s-wid">
+                    {/* <select className="email s-email s-wid">
                               <option>Quận 1</option>
                               <option>Quận 2</option>
                               <option>Quận 3</option>
@@ -266,7 +266,7 @@ const Cart = ({
                         </div>
                       </div>
                     </div>*/}
-                  </div> 
+                  </div>
 
                   <div className="col-lg-4 col-md-6">
                     <div className="discount-code-wrapper">
@@ -297,17 +297,17 @@ const Cart = ({
                       <h5>
                         Tổng Sản Phẩm{" "}
                         <span>
-                          {(cartTotalPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                          {(cartTotalPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                         </span>
                       </h5>
 
                       <h4 className="grand-totall-title">
                         Tổng Cộng{" "}
                         <span>
-                          {(cartTotalPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                          {(cartTotalPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                         </span>
                       </h4>
-                      
+
                       <Link to={process.env.PUBLIC_URL + "/checkout"} >
                         Tiến Hành Thanh Toán
                       </Link>

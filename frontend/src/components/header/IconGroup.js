@@ -49,25 +49,25 @@ const IconGroup = ({
 
 
       <div className="same-style account-setting d-none d-lg-block">
-      {userLogin ?
-        <Link to={process.env.PUBLIC_URL + "/my-account"} className="account-setting-active">
-          <i className="pe-7s-star" />
-        </Link>
-        :
-        <Link to={process.env.PUBLIC_URL + "/login-register"} className="account-setting-active">
-          <i className="pe-7s-user-female" />
-        </Link>
-      }
+        {userLogin ?
+          <Link to={process.env.PUBLIC_URL + "/my-account"} className="account-setting-active">
+            <i className="pe-7s-star" />
+          </Link>
+          :
+          <Link to={process.env.PUBLIC_URL + "/login-register"} className="account-setting-active">
+            <i className="pe-7s-user-female" />
+          </Link>
+        }
       </div>
-        <div className="same-style account-setting d-none d-lg-block">
-        {userLogin && userLogin.isAdmin?
+      <div className="same-style account-setting d-none d-lg-block">
+        {userLogin && userLogin.isAdmin ?
           <Link to={process.env.PUBLIC_URL + "/admin"} className="account-setting-active">
             <i className="pe-7s-study" />
           </Link>
-          :""
+          : ""
         }
       </div>
-      
+
       <div className="same-style header-compare">
         <Link to={process.env.PUBLIC_URL + "/compare"}>
           <i className="pe-7s-shuffle" />
@@ -91,7 +91,7 @@ const IconGroup = ({
             {cartData && cartData.length ? cartData.length : 0}
           </span>
         </button>
-        
+
         {/* menu cart */}
         <MenuCart
           cartData={cartData}
@@ -99,7 +99,7 @@ const IconGroup = ({
           deleteFromCart={deleteFromCart}
         />
       </div>
-      
+
       <div className="same-style cart-wrap d-block d-lg-none">
         <Link className="icon-cart" to={process.env.PUBLIC_URL + "/cart"}>
           <i className="pe-7s-shopbag" />
@@ -110,11 +110,11 @@ const IconGroup = ({
       </div>
       <div>&nbsp;&nbsp;&nbsp;</div>
       {userLogin ?
-      <div className="same-style header-compare">
-        <button onClick={() => handleLogout()}>
-          <i className="pe-7s-right-arrow" />
-        </button>
-      </div>:""
+        <div className="same-style header-compare">
+          <button onClick={() => handleLogout()}>
+            <i className="pe-7s-right-arrow" />
+          </button>
+        </div> : ""
       }
       <div className="same-style mobile-off-canvas d-block d-lg-none">
         <button

@@ -13,9 +13,8 @@ const TabProduct = ({
 }) => {
   return (
     <div
-      className={`product-area ${spaceTopClass ? spaceTopClass : ""} ${
-        spaceBottomClass ? spaceBottomClass : ""
-      } ${bgColorClass ? bgColorClass : ""}`}
+      className={`product-area ${spaceTopClass ? spaceTopClass : ""} ${spaceBottomClass ? spaceBottomClass : ""
+        } ${bgColorClass ? bgColorClass : ""}`}
     >
       <div className="container">
         <SectionTitle titleText="ƯU ĐÃI HẰNG NGÀY !" positionClass="text-center" />

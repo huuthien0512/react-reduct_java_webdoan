@@ -1,12 +1,13 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, Suspense, lazy} from 'react';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import cx from 'classnames';
 import {withRouter} from 'react-router-dom';
-
 import ResizeDetector from 'react-resize-detector';
 
 import AppMain from '../../Layout/AppMain';
-
+import Dashboards from '../../pages/Dashboards';
+const Users = lazy(() => import('../../pages/Users'));
 class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -42,7 +43,8 @@ class Main extends React.Component {
                             {'closed-sidebar-mobile': closedSmallerSidebar || width < 1250},
                             {'sidebar-mobile-open': enableMobileMenu},
                         )}>
-                            <AppMain/>
+                            {/* <AppMain /> */}
+                            <AppMain />
                         </div>
                     </Fragment>
                 )}
@@ -62,4 +64,4 @@ const mapStateToProp = state => ({
 
 });
 
-export default withRouter(connect(mapStateToProp)(Main));
+export default connect(mapStateToProp)(Main);

@@ -21,7 +21,7 @@ export const Products = [
 ];
 export const Orders = [
     {
-        icon: 'pe-7s-plane',
+        icon: 'pe-7s-piggy',
         label: 'Orders',
         to: '#/orders',
     },

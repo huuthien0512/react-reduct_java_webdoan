@@ -101,7 +101,7 @@ const Compare = ({
                                         }
                                         className={
                                           cartItem !== undefined &&
-                                          cartItem.quantity > 0
+                                            cartItem.quantity > 0
                                             ? "active"
                                             : ""
                                         }
@@ -116,7 +116,7 @@ const Compare = ({
                                         }
                                       >
                                         {cartItem !== undefined &&
-                                        cartItem.quantity > 0
+                                          cartItem.quantity > 0
                                           ? "Added"
                                           : "Thêm vào cart"}
                                       </button>
@@ -148,15 +148,15 @@ const Compare = ({
                                   {discountedPrice !== null ? (
                                     <Fragment>
                                       <span className="amount old">
-                                        {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                        {(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                       </span>
                                       <span className="amount">
-                                        {(finalDiscountedPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                        {(finalDiscountedPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                       </span>
                                     </Fragment>
                                   ) : (
                                     <span className="amount">
-                                      {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                      {(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                     </span>
                                   )}
                                 </td>

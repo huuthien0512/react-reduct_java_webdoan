@@ -6,9 +6,8 @@ import FeatureIconSingle from "../components/FeatureIconSingle";
 const FeatureIcon = ({ spaceTopClass, spaceBottomClass }) => {
   return (
     <div
-      className={`support-area ${spaceTopClass ? spaceTopClass : ""} ${
-        spaceBottomClass ? spaceBottomClass : ""
-      }`}
+      className={`support-area ${spaceTopClass ? spaceTopClass : ""} ${spaceBottomClass ? spaceBottomClass : ""
+        }`}
     >
       <div className="container">
         <div className="row">

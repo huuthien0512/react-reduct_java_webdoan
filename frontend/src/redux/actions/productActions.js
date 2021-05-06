@@ -6,28 +6,20 @@ import {
   PRODUCT_DELETE_FAIL,
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
-  PRODUCT_DELETE_RESET,
   PRODUCT_CREATE_FAIL,
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_SUCCESS,
-  PRODUCT_CREATE_RESET,
   PRODUCT_UPDATE_FAIL,
   PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_SUCCESS,
-  PRODUCT_UPDATE_RESET,
   PRODUCT_DETAILS_SUCCESS,
-  PRODUCT_REVIEW_FAIL,
-  PRODUCT_REVIEW_REQUEST,
-  PRODUCT_REVIEW_SUCCESS,
-  PRODUCT_REVIEW_RESET,
-  SEARCH_PRODUCTS_REQUEST,
   SEARCH_PRODUCTS_SUCCESS,
   SEARCH_PRODUCTS_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_FAIL
 
 } from '../constants/productConstants';
-import {BASE_URL} from '../constants/URL_SERVER';
+import { BASE_URL } from '../constants/URL_SERVER';
 
 export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
   try {
@@ -45,7 +37,7 @@ export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) 
   }
 };
 
-export const deleteProduct = (id) => async (dispatch,getState) => {
+export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_DELETE_REQUEST });
     //const {userLogin:{userInfo}}=getState()
@@ -66,7 +58,7 @@ export const deleteProduct = (id) => async (dispatch,getState) => {
   }
 };
 
-export const createProduct = (newProductInfo) => async (dispatch,getState) => {
+export const createProduct = (newProductInfo) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REQUEST });
     // const {userLogin:{userInfo}}=getState()
@@ -76,10 +68,10 @@ export const createProduct = (newProductInfo) => async (dispatch,getState) => {
     //   }
     // }
     console.log(newProductInfo)
-    const {data}=await axios.post(`${BASE_URL}/product/create`,newProductInfo);
+    const { data } = await axios.post(`${BASE_URL}/product/create`, newProductInfo);
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
-      payload:data
+      payload: data
     });
   } catch (error) {
     dispatch({
@@ -90,7 +82,7 @@ export const createProduct = (newProductInfo) => async (dispatch,getState) => {
 };
 
 
-export const updateProduct = (newInfo, id) => async (dispatch,getState) => {
+export const updateProduct = (newInfo, id) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
     //const {userLogin:{userInfo}}=getState()
@@ -99,11 +91,11 @@ export const updateProduct = (newInfo, id) => async (dispatch,getState) => {
     //     'Authorization':userInfo.token
     //   }
     // }
-    const {data}=await axios.put(`${BASE_URL}/product/update/${id}`,newInfo);
+    const { data } = await axios.put(`${BASE_URL}/product/update/${id}`, newInfo);
     dispatch({
       type: PRODUCT_UPDATE_SUCCESS,
     });
-    dispatch({type:PRODUCT_DETAILS_SUCCESS,payload:data})
+    dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data })
     // dispatch({
     //   type:NOTIFY,
     //   payload:{
@@ -118,12 +110,12 @@ export const updateProduct = (newInfo, id) => async (dispatch,getState) => {
     });
   }
 };
-export const searchProducts = (searchString) => async(dispatch) => {
- 
+export const searchProducts = (searchString) => async (dispatch) => {
+
   try {
     //dispatch({ type: SEARCH_PRODUCTS_REQUEST });
-    
-    const {data} = await axios.post(`${BASE_URL}/product/search`, {searchString});
+
+    const { data } = await axios.post(`${BASE_URL}/product/search`, { searchString });
     dispatch({
       type: SEARCH_PRODUCTS_SUCCESS,
       payload: data,
@@ -131,7 +123,7 @@ export const searchProducts = (searchString) => async(dispatch) => {
   } catch (error) {
     dispatch({
       type: SEARCH_PRODUCTS_FAIL,
-     // payload: error.response && error.response.data.msg,
+      // payload: error.response && error.response.data.msg,
       payload: [],
     });
   }

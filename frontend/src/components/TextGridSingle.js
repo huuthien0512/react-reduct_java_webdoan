@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const TextGridOneSingle = ({ data, spaceBottomClass }) => {
+const TextGridSingle = ({ data, spaceBottomClass }) => {
   return (
     <div className="col-lg-4 col-md-4">
       <div
@@ -14,9 +14,9 @@ const TextGridOneSingle = ({ data, spaceBottomClass }) => {
   );
 };
 
-TextGridOneSingle.propTypes = {
+TextGridSingle.propTypes = {
   data: PropTypes.object,
   spaceBottomClass: PropTypes.string
 };
 
-export default TextGridOneSingle;
+export default TextGridSingle;

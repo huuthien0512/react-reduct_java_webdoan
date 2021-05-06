@@ -5,7 +5,7 @@ import { unregister } from '../serviceWorker';
 
 import { HashRouter } from 'react-router-dom';
 import './assets/base.css';
-import Main from './DemoPages/Main';
+import Main from './pages/Main';
 import { Provider } from 'react-redux';
 import { listUsers } from "../redux/actions/userActions";
 import store from "../index";
@@ -26,12 +26,11 @@ const renderApp = Component => {
 renderApp(Main);
 
 if (module.hot) {
-  module.hot.accept('./DemoPages/Main', () => {
-    const NextApp = require('./DemoPages/Main').default;
+  module.hot.accept('./pages/Main', () => {
+    const NextApp = require('./pages/Main').default;
     renderApp(NextApp);
   });
 }
 unregister();
 
 // registerServiceWorker();
-

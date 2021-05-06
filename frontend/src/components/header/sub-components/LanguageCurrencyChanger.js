@@ -25,10 +25,10 @@ const LanguageCurrencyChanger = ({
           {currentLanguageCode === "en"
             ? "English"
             : currentLanguageCode === "fn"
-            ? "French"
-            : currentLanguageCode === "de"
-            ? "Germany"
-            : ""}{" "}
+              ? "French"
+              : currentLanguageCode === "de"
+                ? "Germany"
+                : ""}{" "}
           <i className="fa fa-angle-down" />
         </span>
         <div className="lang-car-dropdown">
@@ -57,7 +57,7 @@ const LanguageCurrencyChanger = ({
         </span>
         <div className="lang-car-dropdown">
           <ul>
-          <li>
+            <li>
               <button value="VND" onClick={e => setCurrencyTrigger(e)}>
                 VND
               </button>

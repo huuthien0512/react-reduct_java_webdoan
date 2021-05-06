@@ -11,9 +11,8 @@ const FooterNewsletter = ({
 }) => {
   return (
     <div
-      className={`footer-widget ${spaceBottomClass ? spaceBottomClass : ""} ${
-        sideMenu ? "ml-ntv5" : spaceLeftClass ? spaceLeftClass : ""
-      } ${widgetColorClass ? widgetColorClass : ""}`}
+      className={`footer-widget ${spaceBottomClass ? spaceBottomClass : ""} ${sideMenu ? "ml-ntv5" : spaceLeftClass ? spaceLeftClass : ""
+        } ${widgetColorClass ? widgetColorClass : ""}`}
     >
       <div className="footer-title">
         <h3>Đăng Ký Nhận Thông Tin</h3>

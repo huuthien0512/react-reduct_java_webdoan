@@ -1,11 +1,10 @@
 import uuid from "uuid/v4";
 import {
-  ADD_TO_CART,
   DECREASE_QUANTITY,
   DELETE_FROM_CART,
   DELETE_ALL_FROM_CART,
 } from "../actions/cartActions";
-import {CART_SAVE_METHOD, CART_ADD_ITEM} from "../constants/cartConstants"
+import { CART_ADD_ITEM } from "../constants/cartConstants"
 const initState = [];
 
 const cartReducer = (state = initState, action) => {
@@ -28,11 +27,11 @@ const cartReducer = (state = initState, action) => {
         return cartItems.map(item =>
           item.cartItemId === cartItem.cartItemId
             ? {
-                ...item,
-                quantity: product.quantity
-                  ? item.quantity + product.quantity
-                  : item.quantity + 1
-              }
+              ...item,
+              quantity: product.quantity
+                ? item.quantity + product.quantity
+                : item.quantity + 1
+            }
             : item
         );
       }
@@ -41,7 +40,7 @@ const cartReducer = (state = initState, action) => {
       const cartItem = cartItems.filter(
         item =>
           item.id === product.id
-          (product.cartItemId ? product.cartItemId === item.cartItemId : true)
+            (product.cartItemId ? product.cartItemId === item.cartItemId : true)
       )[0];
 
       if (cartItem === undefined) {
@@ -68,11 +67,11 @@ const cartReducer = (state = initState, action) => {
         return cartItems.map(item =>
           item.cartItemId === cartItem.cartItemId
             ? {
-                ...item,
-                quantity: product.quantity
-                  ? item.quantity + product.quantity
-                  : item.quantity + 1
-              }
+              ...item,
+              quantity: product.quantity
+                ? item.quantity + product.quantity
+                : item.quantity + 1
+            }
             : item
         );
       }

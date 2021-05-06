@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
 
 const Admin = lazy(() => import("./admin/index"));
+
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Product = lazy(() => import("./pages/Product"));
@@ -26,18 +27,7 @@ const Paypal = lazy(() => import("./pages/Paypal"));
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-const App = ({userLogin}) => {
-  // useEffect(() => {
-  //   props.dispatch(
-  //     loadLanguages({
-  //       languages: {
-  //         en: require("./translations/english.json"),
-  //         fn: require("./translations/french.json"),
-  //         de: require("./translations/germany.json")
-  //       }
-  //     })
-  //   );
-  // });
+const App = ({ userLogin }) => {
 
   return (
     <ToastProvider placement="bottom-left">
@@ -64,12 +54,12 @@ const App = ({userLogin}) => {
                 {/* Admin */}
                 <Route
                   path={process.env.PUBLIC_URL + "/admin"}
-                  component={userLogin && userLogin.isAdmin?Admin:NotFound}
+                  component={userLogin && userLogin.isAdmin ? Admin : NotFound}
                 />
                 {/* Homepages */}
-                <Route path={process.env.PUBLIC_URL + "/home"} component={Home}/>
+                <Route path={process.env.PUBLIC_URL + "/home"} component={Home} />
                 {/* Shop pages */}
-                <Route path={process.env.PUBLIC_URL + "/shop"} component={Shop}/>
+                <Route path={process.env.PUBLIC_URL + "/shop"} component={Shop} />
                 {/* Shop product pages */}
                 <Route path={process.env.PUBLIC_URL + "/product/:id"}
                   render={(routeProps) => (
@@ -97,7 +87,7 @@ const App = ({userLogin}) => {
                   component={MyAccount}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/login-register/:tab"}
+                  path={process.env.PUBLIC_URL + "/login-register"}
                   component={LoginRegister}
                 />
 
@@ -127,7 +117,7 @@ const App = ({userLogin}) => {
                   component={NotFound}
                 />
 
-              
+
 
 
 

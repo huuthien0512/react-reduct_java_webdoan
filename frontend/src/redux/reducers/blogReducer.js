@@ -1,7 +1,7 @@
-import { 
+import {
   FETCH_BLOGS_SUCCESS,
-  FETCH_BLOGS_FAIL,
-  FETCH_BLOGS_REQUEST } from '../constants/blogConstants'
+  FETCH_BLOGS_REQUEST
+} from '../constants/blogConstants'
 
 const initState = {
   blogs: []
@@ -16,9 +16,9 @@ const blogReducer = (state = initState, action) => {
         ...state,
         blogs: action.payload
       };
+    default:
+      return state;
   }
-
-  return state;
 };
 
 export default blogReducer;

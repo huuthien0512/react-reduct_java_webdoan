@@ -22,9 +22,13 @@ const ProductDescriptionInfo = ({
   addToWishlist,
   addToCompare
 }) => {
-  const [productStock, setProductStock] = useState(
+  // const [productStock, setProductStock] = useState(
+  //   product ? product.quantity : 0
+  // );
+  const productStock = (
     product ? product.quantity : 0
   );
+  
   const [quantityCount, setQuantityCount] = useState(1);
 
   const productCartQty = getProductCartQuantity(
@@ -38,13 +42,13 @@ const ProductDescriptionInfo = ({
       <div className="product-details-price">
         {discountedPrice !== null ? (
           <Fragment>
-            <span>{finalDiscountedPrice*1000 + " " + currency.currencySymbol}</span>{" "}
+            <span>{finalDiscountedPrice * 1000 + " " + currency.currencySymbol}</span>{" "}
             <span className="old">
-              {finalProductPrice*1000 + " " + currency.currencySymbol}
+              {finalProductPrice * 1000 + " " + currency.currencySymbol}
             </span>
           </Fragment>
         ) : (
-          <span>{finalProductPrice*1000 + " " + currency.currencySymbol} </span>
+          <span>{finalProductPrice * 1000 + " " + currency.currencySymbol} </span>
         )}
       </div>
       {product.rating && product.rating > 0 ? (

@@ -6,11 +6,10 @@ import { multilanguage } from "redux-multilanguage";
 const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
   return (
     <div
-      className={` ${
-        sidebarMenu
+      className={` ${sidebarMenu
           ? "sidebar-menu"
           : `main-menu ${menuWhiteClass ? menuWhiteClass : ""}`
-      } `}
+        } `}
     >
       <nav>
         <ul>

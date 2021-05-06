@@ -5,21 +5,21 @@ import HeroSlider from "../wrappers/HeroSlider";
 import FeatureIcon from "../wrappers/FeatureIcon";
 import TabProduct from "../wrappers/TabProduct";
 import BlogFeatured from "../wrappers/BlogFeatured";
-import {listProducts} from '../redux/actions/productActions';
-import {listBlogs} from '../redux/actions/blogActions';
+import { listProducts } from '../redux/actions/productActions';
+import { listBlogs } from '../redux/actions/blogActions';
 import { connect } from 'react-redux';
 
-const Home = ({listProducts, listBlogs}) => {
+const Home = ({ listProducts, listBlogs }) => {
 
-  useEffect(()=>{
+  useEffect(() => {
     listProducts();
     listBlogs();
-  },[])
-  
+  }, [listProducts, listBlogs])
+
   return (
-    
+
     <Fragment>
-      
+
       <MetaTags>
         <title>Cửa Hàng H20</title>
         <meta
@@ -47,14 +47,14 @@ const Home = ({listProducts, listBlogs}) => {
   );
 };
 const mapDispatchToProps = dispatch => {
-  
+
   return {
-      listProducts: () => {
+    listProducts: () => {
       dispatch(listProducts());
     },
-      listBlogs: () => {
+    listBlogs: () => {
       dispatch(listBlogs());
     }
   };
 }
-export default  connect(null, mapDispatchToProps)(Home);
+export default connect(null, mapDispatchToProps)(Home);

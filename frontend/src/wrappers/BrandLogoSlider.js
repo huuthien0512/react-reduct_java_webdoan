@@ -30,9 +30,8 @@ const BrandLogoSlider = ({ spaceBottomClass, spaceTopClass }) => {
 
   return (
     <div
-      className={`brand-logo-area ${
-        spaceBottomClass ? spaceBottomClass : ""
-      }  ${spaceTopClass ? spaceTopClass : ""}`}
+      className={`brand-logo-area ${spaceBottomClass ? spaceBottomClass : ""
+        }  ${spaceTopClass ? spaceTopClass : ""}`}
     >
       <div className="container">
         <div className="brand-logo-active">

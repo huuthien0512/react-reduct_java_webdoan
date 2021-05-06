@@ -4,9 +4,8 @@ import React from "react";
 const BrandLogoSingle = ({ data, sliderClassName, spaceBottomClass }) => {
   return (
     <div
-      className={`single-brand-logo ${sliderClassName ? sliderClassName : ""} ${
-        spaceBottomClass ? spaceBottomClass : ""
-      }`}
+      className={`single-brand-logo ${sliderClassName ? sliderClassName : ""} ${spaceBottomClass ? spaceBottomClass : ""
+        }`}
     >
       <img src={process.env.PUBLIC_URL + data.image} alt="" />
     </div>

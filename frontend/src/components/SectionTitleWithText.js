@@ -4,9 +4,8 @@ import React from "react";
 const SectionTitleWithText = ({ spaceTopClass, spaceBottomClass }) => {
   return (
     <div
-      className={`welcome-area ${spaceTopClass ? spaceTopClass : ""} ${
-        spaceBottomClass ? spaceBottomClass : ""
-      }`}
+      className={`welcome-area ${spaceTopClass ? spaceTopClass : ""} ${spaceBottomClass ? spaceBottomClass : ""
+        }`}
     >
       <div className="container">
         <div className="welcome-content text-center">

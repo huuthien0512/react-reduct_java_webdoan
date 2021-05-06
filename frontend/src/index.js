@@ -7,25 +7,21 @@ import thunk from "redux-thunk";
 // import { save, load } from "redux-localstorage-simple";
 import { Provider } from "react-redux";
 import rootReducer from "./redux/reducers/rootReducer";
-//import products from "./data/products.json";
 import App from "./App";
 import "./assets/scss/style.scss";
 import * as serviceWorker from "./serviceWorker";
-
-
 import { composeWithDevTools } from "redux-devtools-extension";
-import { listUsers } from "./redux/actions/userActions";
 
-const userInfoFormLocalStore=localStorage.getItem('userInfo')?JSON.parse(localStorage.getItem('userInfo')):null
-const cartItemsFormLocalStore=localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('cartItems')):[]
-const compareItemsFormLocalStore=localStorage.getItem('compareItems')?JSON.parse(localStorage.getItem('compareItems')):[]
-const wishlistItemsFormLocalStore=localStorage.getItem('wishlistItems')?JSON.parse(localStorage.getItem('wishlistItems')):[]
+const userInfoFormLocalStore = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+const cartItemsFormLocalStore = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+const compareItemsFormLocalStore = localStorage.getItem('compareItems') ? JSON.parse(localStorage.getItem('compareItems')) : []
+const wishlistItemsFormLocalStore = localStorage.getItem('wishlistItems') ? JSON.parse(localStorage.getItem('wishlistItems')) : []
 
-const initialState={
-  loginData:{userInfo:userInfoFormLocalStore},
-  cartData:cartItemsFormLocalStore,
-  compareData:compareItemsFormLocalStore,
-  wishlistData:wishlistItemsFormLocalStore,
+const initialState = {
+  loginData: { userInfo: userInfoFormLocalStore },
+  cartData: cartItemsFormLocalStore,
+  compareData: compareItemsFormLocalStore,
+  wishlistData: wishlistItemsFormLocalStore,
 }
 
 const store = createStore(
@@ -37,7 +33,7 @@ const store = createStore(
 
 export default (store);
 
-ReactDOM.render (
+ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,

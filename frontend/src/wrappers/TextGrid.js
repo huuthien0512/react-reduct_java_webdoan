@@ -6,9 +6,8 @@ import TextGridSingle from "../components/TextGridSingle.js";
 const TextGrid = ({ spaceBottomClass }) => {
   return (
     <div
-      className={`about-mission-area ${
-        spaceBottomClass ? spaceBottomClass : ""
-      }`}
+      className={`about-mission-area ${spaceBottomClass ? spaceBottomClass : ""
+        }`}
     >
       <div className="container">
         <div className="row">

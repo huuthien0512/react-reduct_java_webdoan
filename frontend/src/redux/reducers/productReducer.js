@@ -1,4 +1,4 @@
-import { 
+import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -31,7 +31,7 @@ const initState = {
   products: []
 };
 
-export const productReducer = (state = { products: [] }, action) => {
+export const productReducer = (state = initState, action) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return { loading: true, products: [] };
@@ -88,9 +88,9 @@ export const productDelete = (state = {}, action) => {
 export const productCreate = (state = { product: {} }, action) => {
   switch (action.type) {
     case PRODUCT_CREATE_REQUEST:
-      return { loading: true, error:"", message:"" };
+      return { loading: true, error: "", message: "" };
     case PRODUCT_CREATE_SUCCESS:
-      return { loading: false, success: true, product: action.payload, error:"", message:"Tạo thành công !"  };
+      return { loading: false, success: true, product: action.payload, error: "", message: "Tạo thành công !" };
     case PRODUCT_CREATE_FAIL:
       return { loading: false, error: action.payload };
     case PRODUCT_CREATE_RESET:
@@ -119,17 +119,17 @@ export const productUpdate = (state = {}, action) => {
   }
 };
 
-export const detailProduct=(state={product:{}},action)=>{
+export const detailProduct = (state = { product: {} }, action) => {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
-        return {...state,loading:true}
+      return { ...state, loading: true }
     case PRODUCT_DETAILS_SUCCESS:
-        return {loading:false,product:action.payload}
+      return { loading: false, product: action.payload }
     case PRODUCT_DETAILS_FAIL:
-        return {loading:false,error:action.payload}
-  
+      return { loading: false, error: action.payload }
+
     default:
-     return state
+      return state
   }
 }
 

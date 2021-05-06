@@ -3,16 +3,16 @@ export const DELETE_FROM_WISHLIST = "DELETE_FROM_WISHLIST";
 export const DELETE_ALL_FROM_WISHLIST = "DELETE_ALL_FROM_WISHLIST";
 
 // Thêm vào wishlist
-export const addToWishlist = (item, addToast) => async (dispatch,getState)=>{
+export const addToWishlist = (item, addToast) => async (dispatch, getState) => {
 
-    if (addToast) {
-      addToast("Đã thêm vào Wishlist", {
-        appearance: "success",
-        autoDismiss: true
-      });
-    }
-    dispatch({ type: ADD_TO_WISHLIST, payload: item });
-    localStorage.setItem('wishlistItems', JSON.stringify(getState().wishlistData));
+  if (addToast) {
+    addToast("Đã thêm vào Wishlist", {
+      appearance: "success",
+      autoDismiss: true
+    });
+  }
+  dispatch({ type: ADD_TO_WISHLIST, payload: item });
+  localStorage.setItem('wishlistItems', JSON.stringify(getState().wishlistData));
 };
 
 // delete from wishlist

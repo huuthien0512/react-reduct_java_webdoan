@@ -15,10 +15,14 @@ function ProductModal(props) {
 
   const [gallerySwiper, getGallerySwiper] = useState(null);
   const [thumbnailSwiper, getThumbnailSwiper] = useState(null);
-  
-  const [productStock, setProductStock] = useState(
+
+  // const [productStock, setProductStock] = useState(
+  //   product ? product.quantity : 0
+  // );
+  const productStock = (
     product ? product.quantity : 0
   );
+  
   const [quantityCount, setQuantityCount] = useState(1);
 
   const wishlistItem = props.wishlistitem;
@@ -136,7 +140,7 @@ function ProductModal(props) {
                   {discountedprice !== null ? (
                     <Fragment>
                       <span>
-                        {finaldiscountedprice*1000 + "  "+ currency.currencySymbol}
+                        {finaldiscountedprice * 1000 + "  " + currency.currencySymbol}
                       </span>{" "}
                       <span className="old">
                         {finalproductprice + " " + currency.currencySymbol}

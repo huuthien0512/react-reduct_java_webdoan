@@ -6,9 +6,8 @@ import FunFactSingle from "../components/FunFactSingle.js";
 const FunFact = ({ spaceTopClass, spaceBottomClass, bgClass }) => {
   return (
     <div
-      className={`funfact-area ${spaceTopClass ? spaceTopClass : ""} ${
-        spaceBottomClass ? spaceBottomClass : ""
-      } ${bgClass ? bgClass : ""}`}
+      className={`funfact-area ${spaceTopClass ? spaceTopClass : ""} ${spaceBottomClass ? spaceBottomClass : ""
+        } ${bgClass ? bgClass : ""}`}
     >
       <div className="container">
         <div className="row">

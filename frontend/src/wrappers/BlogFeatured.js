@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect }  from "react";
+import React from "react";
 import { connect } from 'react-redux';
 
 import BlogFeaturedSingle from "../components/BlogFeaturedSingle";
@@ -8,9 +8,8 @@ import SectionTitle from "../components/SectionTitle";
 const BlogFeatured = ({ blogs, spaceTopClass, spaceBottomClass }) => {
   return (
     <div
-      className={`blog-area ${spaceTopClass ? spaceTopClass : ""} ${
-        spaceBottomClass ? spaceBottomClass : ""
-      }`}
+      className={`blog-area ${spaceTopClass ? spaceTopClass : ""} ${spaceBottomClass ? spaceBottomClass : ""
+        }`}
     >
       <div className="container">
         <SectionTitle

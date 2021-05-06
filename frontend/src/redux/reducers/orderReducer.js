@@ -50,7 +50,7 @@ export const orderReducer = (state = {}, action) => {
 };
 
 
-export const orderDetails = (state = {orderItems:[],shippingAddress:{}}, action) => {
+export const orderDetails = (state = { orderItems: [], shippingAddress: {} }, action) => {
   switch (action.type) {
     case ORDER_DETAILS_REQUEST:
       return {
@@ -99,7 +99,7 @@ export const orderPayReducer = (state = {}, action) => {
   }
 };
 
-export const myOrderList = (state = {orders:[]}, action) => {
+export const myOrderList = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_LIST_REQUEST:
       return {
@@ -121,7 +121,7 @@ export const myOrderList = (state = {orders:[]}, action) => {
   }
 };
 
-export const orderUpdate = (state = {order:[]}, action) => {
+export const orderUpdate = (state = { order: [] }, action) => {
   switch (action.type) {
     case ORDER_UPDATE_REQUEST:
       return {
@@ -132,23 +132,23 @@ export const orderUpdate = (state = {order:[]}, action) => {
       return {
         loading: false,
         order: action.payload,
-        success:true
+        success: true
       };
     case ORDER_UPDATE_FAIL:
       return {
         loading: false,
         error: action.payload,
       };
-      case ORDER_UPDATE_RESET:
-        return {
-          order:[]
-        };
+    case ORDER_UPDATE_RESET:
+      return {
+        order: []
+      };
     default:
       return state;
   }
 };
 
-export const orderListAll = (state = {orders:[]}, action) => {
+export const orderListAll = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_LIST_ALL_REQUEST:
       return {

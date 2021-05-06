@@ -30,9 +30,8 @@ const ProductGridSingle = ({
   return (
     <Fragment>
       <div
-        className={`col-xl-3 col-md-6 col-lg-4 col-sm-6 ${
-          sliderClassName ? sliderClassName : ""
-        }`}
+        className={`col-xl-3 col-md-6 col-lg-4 col-sm-6 ${sliderClassName ? sliderClassName : ""
+          }`}
       >
         <div
           className={`product-wrap ${spaceBottomClass ? spaceBottomClass : ""}`}
@@ -116,13 +115,13 @@ const ProductGridSingle = ({
             <div className="product-price">
               {discountedPrice !== null ? (
                 <Fragment>
-                  <span>{(finalDiscountedPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</span>{" "}
+                  <span>{(finalDiscountedPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>{" "}
                   <span className="old">
-                    {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                    {(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                   </span>
                 </Fragment>
               ) : (
-                <span>{(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} </span>
+                <span>{(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })} </span>
               )}
             </div>
           </div>

@@ -17,12 +17,12 @@ import {
   REPORT_NUM_ORDER_SUCCESS,
   REPORT_NUM_ORDER_FAIL
 } from '../constants/reportConstants';
-import {BASE_URL} from '../constants/URL_SERVER';
+import { BASE_URL } from '../constants/URL_SERVER';
 
-export const getIncome = () => async(dispatch) => {
+export const getIncome = () => async (dispatch) => {
   try {
     dispatch({ type: REPORT_INCOME_REQUEST });
-    const {data} = await axios.get(`${BASE_URL}/report/income/month`);
+    const { data } = await axios.get(`${BASE_URL}/report/income/month`);
     dispatch({
       type: REPORT_INCOME_SUCCESS,
       payload: data,
@@ -35,10 +35,10 @@ export const getIncome = () => async(dispatch) => {
   }
 };
 
-export const getNumOfUser = () => async(dispatch) => {
+export const getNumOfUser = () => async (dispatch) => {
   try {
     dispatch({ type: REPORT_NUM_USER_REQUEST });
-    const {data} = await axios.get(`${BASE_URL}/report/user/month`);
+    const { data } = await axios.get(`${BASE_URL}/report/user/month`);
     dispatch({
       type: REPORT_NUM_USER_SUCCESS,
       payload: data,
@@ -51,10 +51,10 @@ export const getNumOfUser = () => async(dispatch) => {
   }
 };
 
-export const getNumOfProduct = () => async(dispatch) => {
+export const getNumOfProduct = () => async (dispatch) => {
   try {
     dispatch({ type: REPORT_NUM_PRODUCT_REQUEST });
-    const {data} = await axios.get(`${BASE_URL}/report/product/month`);
+    const { data } = await axios.get(`${BASE_URL}/report/product/month`);
     dispatch({
       type: REPORT_NUM_PRODUCT_SUCCESS,
       payload: data,
@@ -67,10 +67,10 @@ export const getNumOfProduct = () => async(dispatch) => {
   }
 };
 
-export const getNumOfBlog = () => async(dispatch) => {
+export const getNumOfBlog = () => async (dispatch) => {
   try {
     dispatch({ type: REPORT_NUM_BLOG_REQUEST });
-    const {data} = await axios.get(`${BASE_URL}/report/blog/month`);
+    const { data } = await axios.get(`${BASE_URL}/report/blog/month`);
     dispatch({
       type: REPORT_NUM_BLOG_SUCCESS,
       payload: data,
@@ -83,10 +83,10 @@ export const getNumOfBlog = () => async(dispatch) => {
   }
 };
 
-export const getNumOfOrder = () => async(dispatch) => {
+export const getNumOfOrder = () => async (dispatch) => {
   try {
     dispatch({ type: REPORT_NUM_ORDER_REQUEST });
-    const {data} = await axios.get(`${BASE_URL}/report/order/month`);
+    const { data } = await axios.get(`${BASE_URL}/report/order/month`);
     dispatch({
       type: REPORT_NUM_ORDER_SUCCESS,
       payload: data,

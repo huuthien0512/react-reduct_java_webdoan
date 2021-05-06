@@ -9,7 +9,7 @@ import BlogPagination from "../wrappers/BlogPagination";
 import BlogPosts from "../wrappers/BlogPosts";
 import { connect } from 'react-redux';
 import { getSortedBlogs } from '../helpers/blog';
-import {listBlogs} from '../redux/actions/blogActions';
+import { listBlogs } from '../redux/actions/blogActions';
 
 const Blog = ({ location, blogs, listBlogs }) => {
 
@@ -17,27 +17,31 @@ const Blog = ({ location, blogs, listBlogs }) => {
   const [sortType, setSortType] = useState('');
   const [sortValue, setSortValue] = useState('');
   const [currentData, setCurrentData] = useState([]);
-  const [filterSortType, setFilterSortType] = useState('');
-  const [filterSortValue, setFilterSortValue] = useState('');
-  const [offset, setOffset] = useState(0);
-  const [sortedBlogs, setSortedBlogs] = useState([]);
+  // const [filterSortType, setFilterSortType] = useState('');
+  const filterSortType = ''
+  // const [filterSortValue, setFilterSortValue] = useState('');
+  const filterSortValue = ''
+  //  const [offset, setOffset] = useState(0);
+  const offset = 0
+  // const [sortedBlogs, setSortedBlogs] = useState([]);
+ 
   const pageLimit = 15;
   const getSortParams = (sortType, sortValue) => {
     setSortType(sortType);
     setSortValue(sortValue);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     listBlogs();
-  },[])
+  }, [listBlogs])
 
   useEffect(() => {
     let sortedBlogs = getSortedBlogs(blogs, sortType, sortValue);
     const filterSortedBlogs = getSortedBlogs(sortedBlogs, filterSortType, filterSortValue);
     sortedBlogs = filterSortedBlogs;
-    setSortedBlogs(sortedBlogs);
+ //   setSortedBlogs(sortedBlogs);
     setCurrentData(sortedBlogs.slice(offset, offset + pageLimit));
-  }, [offset, blogs, sortType, sortValue, filterSortType, filterSortValue ]);
+  }, [offset, blogs, sortType, sortValue, filterSortType, filterSortValue]);
   return (
     <Fragment>
       <MetaTags>
@@ -61,7 +65,7 @@ const Blog = ({ location, blogs, listBlogs }) => {
                 <div className="ml-20">
                   <div className="row">
                     {/* blog posts */}
-                    <BlogPosts blogs={currentData}/>
+                    <BlogPosts blogs={currentData} />
                   </div>
 
                   {/* blog pagination */}
@@ -70,7 +74,7 @@ const Blog = ({ location, blogs, listBlogs }) => {
               </div>
               <div className="col-lg-3">
                 {/* blog sidebar */}
-                <BlogSidebar blogs={blogs} getSortParams={getSortParams} sideSpaceClass="mr-30"/>
+                <BlogSidebar blogs={blogs} getSortParams={getSortParams} sideSpaceClass="mr-30" />
               </div>
             </div>
           </div>
@@ -89,9 +93,9 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = dispatch => {
-  
+
   return {
-      listBlogs: () => {
+    listBlogs: () => {
       dispatch(listBlogs());
     }
   };

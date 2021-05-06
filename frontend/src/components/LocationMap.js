@@ -9,7 +9,7 @@ const FooterMap = props => {
   };
 
   return (
-    
+
     <Map
       google={props.google}
       zoom={18}

@@ -24,11 +24,9 @@ import {
   USER_UPDATE_SUCCESS,
   USER_UPDATE_FAIL,
   USER_UPDATE_RESET,
-  USER_UPDATE_PROFILE_RESET,
   USER_UPDATE_PASSWORD_REQUEST,
   USER_UPDATE_PASSWORD_SUCCESS,
   USER_UPDATE_PASSWORD_FAIL,
-  USER_UPDATE_PASSWORD_RESET
 } from '../constants/userConstants';
 
 
@@ -37,7 +35,7 @@ export const userReducer = (state = {}, action) => {
     case USER_LOGIN_REQUEST:
       return { loading: true };
     case USER_LOGIN_SUCCESS:
-      return { loading: false, userInfo: action.payload, message: action.payload.msg, success:true };
+      return { loading: false, userInfo: action.payload, message: action.payload.msg, success: true };
     case USER_LOGIN_FAIL:
       return { loading: false, message: action.payload };
     case USER_LOGOUT:
@@ -49,66 +47,66 @@ export const userReducer = (state = {}, action) => {
 export const userRegister = (state = {}, action) => {
   switch (action.type) {
     case USER_REGISTER_REQUEST:
-      return { loading: true};
+      return { loading: true };
     case USER_REGISTER_SUCCESS:
-      return { loading: false, success: true, message:action.payload};
+      return { loading: false, success: true, message: action.payload };
     case USER_REGISTER_FAIL:
-      return { loading: false, message: action.payload};
+      return { loading: false, message: action.payload };
     default:
       return state;
   }
 };
-export const userInfo = (state = {user:{}}, action) => {
+export const userInfo = (state = { user: {} }, action) => {
   switch (action.type) {
     case USER_DETAILS_REQUEST:
-      return {...state,loading: true };
+      return { ...state, loading: true };
     case USER_DETAILS_SUCCESS:
-      return { loading: false, userInfo:action.payload, };
+      return { loading: false, userInfo: action.payload, };
     case USER_DETAILS_FAIL:
-      return { loading: false,error: action.payload };
+      return { loading: false, error: action.payload };
     case USER_LOGOUT:
-      return{user:{}}
+      return { user: {} }
     default:
       return state;
   }
 };
 
-export const userUpdateProfile=(state={},action)=>{
+export const userUpdateProfile = (state = {}, action) => {
   switch (action.type) {
     case USER_UPDATE_PROFILE_REQUEST:
-      return {...state,loading:true, message:""}
+      return { ...state, loading: true, message: "" }
     case USER_UPDATE_PROFILE_SUCCESS:
-      return {loading:false,success:true, message:"Cập nhật thông tin thành công"}
+      return { loading: false, success: true, message: "Cập nhật thông tin thành công" }
     case USER_UPDATE_PROFILE_FAIL:
-      return {loading:false,errorUpdate:action.payload}
-      case USER_LOGOUT:
+      return { loading: false, errorUpdate: action.payload }
+    case USER_LOGOUT:
       return {}
     default:
       return state
   }
 }
 
-export const userUpdatePassword=(state={},action)=>{
+export const userUpdatePassword = (state = {}, action) => {
   switch (action.type) {
     case USER_UPDATE_PASSWORD_REQUEST:
-      return {...state,loading:true, message:"", error:""}
+      return { ...state, loading: true, message: "", error: "" }
     case USER_UPDATE_PASSWORD_SUCCESS:
-      return {loading:false,success:true, message:action.payload}
+      return { loading: false, success: true, message: action.payload }
     case USER_UPDATE_PASSWORD_FAIL:
-      return {loading:false,error:action.payload}
-      case USER_LOGOUT:
+      return { loading: false, error: action.payload }
+    case USER_LOGOUT:
       return {}
     default:
       return state
   }
 }
 
-export const listUsers = (state = {users:[]}, action) => {
+export const listUsers = (state = { users: [] }, action) => {
   switch (action.type) {
     case USER_LIST_REQUEST:
-      return {...state,loading: true };
+      return { ...state, loading: true };
     case USER_LIST_SUCCESS:
-      return { loading: false, users:action.payload};
+      return { loading: false, users: action.payload };
     case USER_LIST_FAIL:
       return { loading: false, error: action.payload };
     case USER_LIST_RESET:
@@ -121,11 +119,11 @@ export const listUsers = (state = {users:[]}, action) => {
 export const userDelete = (state = {}, action) => {
   switch (action.type) {
     case USER_DELETE_REQUEST:
-      return {loading: true };
+      return { loading: true };
     case USER_DELETE_SUCCESS:
-      return { loading: true,success:true};
+      return { loading: true, success: true };
     case USER_DELETE_FAIL:
-      return { loading: false,error: action.payload };
+      return { loading: false, error: action.payload };
     case USER_DELETE_RESET:
       return {};
     default:
@@ -133,17 +131,17 @@ export const userDelete = (state = {}, action) => {
   }
 };
 
-export const userAdminUpdate = (state = {user:{}}, action) => {
+export const userAdminUpdate = (state = { user: {} }, action) => {
   switch (action.type) {
     case USER_UPDATE_REQUEST:
-      return {loading: true };
+      return { loading: true };
     case USER_UPDATE_SUCCESS:
-      return { loading: false,success:true};
+      return { loading: false, success: true };
     case USER_UPDATE_FAIL:
-      return { loading: false,error: action.payload };
+      return { loading: false, error: action.payload };
     case USER_UPDATE_RESET:
       return {
-        user:{}
+        user: {}
 
       };
     default:

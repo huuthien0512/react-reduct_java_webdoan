@@ -10,9 +10,9 @@ import Breadcrumb from '../wrappers/Breadcrumb';
 import ShopSidebar from '../wrappers/ShopSidebar';
 import ShopTopbar from '../wrappers/ShopTopbar';
 import ShopProducts from '../wrappers/ShopProducts';
-import {listProducts} from '../redux/actions/productActions';
+import { listProducts } from '../redux/actions/productActions';
 
-const Shop = ({location, products, listProducts}) => {
+const Shop = ({ location, products, listProducts }) => {
     const [layout, setLayout] = useState('grid three-column');
     const [sortType, setSortType] = useState('');
     const [sortValue, setSortValue] = useState('');
@@ -24,13 +24,13 @@ const Shop = ({location, products, listProducts}) => {
     const [sortedProducts, setSortedProducts] = useState([]);
 
     const [searchedProducts, setSearchedProducts] = useState();
-    
-    const pageLimit = 9;
-    const {pathname} = location;
 
-    useEffect(()=>{
+    const pageLimit = 9;
+    const { pathname } = location;
+
+    useEffect(() => {
         listProducts();
-    },[])
+    }, [listProducts])
 
     const getLayout = (layout) => {
         setLayout(layout)
@@ -49,17 +49,17 @@ const Shop = ({location, products, listProducts}) => {
     const getSearchProducts = (products) => {
         setSearchedProducts(products);
     }
-    
+
     useEffect(() => {
-        
+
         let sortedProducts = getSortedProducts(products, sortType, sortValue);
         const filterSortedProducts = getSortedProducts(sortedProducts, filterSortType, filterSortValue);
-        
+
         sortedProducts = filterSortedProducts;
         setSortedProducts(sortedProducts);
-        setCurrentData(searchedProducts ? searchedProducts.slice(offset, offset + pageLimit): sortedProducts.slice(offset, offset + pageLimit));
+        setCurrentData(searchedProducts ? searchedProducts.slice(offset, offset + pageLimit) : sortedProducts.slice(offset, offset + pageLimit));
 
-    }, [offset, products, sortType, sortValue, filterSortType, filterSortValue, searchedProducts ]);
+    }, [offset, products, sortType, sortValue, filterSortType, filterSortValue, searchedProducts]);
 
     return (
         <Fragment>
@@ -80,7 +80,7 @@ const Shop = ({location, products, listProducts}) => {
                         <div className="row">
                             <div className="col-lg-3 order-2 order-lg-1">
                                 {/* shop sidebar */}
-                                <ShopSidebar products={products} getSortParams={getSortParams} sideSpaceClass="mr-30" getSearchProducts={getSearchProducts}/>
+                                <ShopSidebar products={products} getSortParams={getSortParams} sideSpaceClass="mr-30" getSearchProducts={getSearchProducts} />
                             </div>
                             <div className="col-lg-9 order-1 order-lg-2">
                                 {/* shop topbar default */}
@@ -113,22 +113,22 @@ const Shop = ({location, products, listProducts}) => {
 }
 
 Shop.propTypes = {
-  location: PropTypes.object,
-  products: PropTypes.array,
+    location: PropTypes.object,
+    products: PropTypes.array,
 }
 
 const mapStateToProps = state => {
-    return{
+    return {
         products: state.productData.products,
     }
 }
 const mapDispatchToProps = dispatch => {
-  
+
     return {
         listProducts: () => {
-        dispatch(listProducts());
-      }
+            dispatch(listProducts());
+        }
     };
-  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Shop);

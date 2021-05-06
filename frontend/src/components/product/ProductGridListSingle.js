@@ -30,9 +30,8 @@ const ProductGridListSingle = ({
   return (
     <Fragment>
       <div
-        className={`col-xl-4 col-sm-6 ${
-          sliderClassName ? sliderClassName : ""
-        }`}
+        className={`col-xl-4 col-sm-6 ${sliderClassName ? sliderClassName : ""
+          }`}
       >
         <div
           className={`product-wrap ${spaceBottomClass ? spaceBottomClass : ""}`}
@@ -96,7 +95,7 @@ const ProductGridListSingle = ({
                   <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}>
                     Chọn Sản Phẩm
                   </Link>
-                 ) : (
+                ) : (
                   <button disabled className="active">
                     Hết hàng
                   </button>
@@ -125,13 +124,13 @@ const ProductGridListSingle = ({
             <div className="product-price">
               {discountedPrice !== null ? (
                 <Fragment>
-                  <span>{(finalDiscountedPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</span>{" "}
+                  <span>{(finalDiscountedPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>{" "}
                   <span className="old">
-                    {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                    {(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                   </span>
                 </Fragment>
               ) : (
-                <span>{(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})} </span>
+                <span>{(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })} </span>
               )}
             </div>
           </div>

@@ -115,21 +115,21 @@ const Wishlist = ({
                                   {discountedPrice !== null ? (
                                     <Fragment>
                                       <span className="amount old">
-                                        {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                        {(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                       </span>
                                       <span className="amount">
-                                        {(finalDiscountedPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                        {(finalDiscountedPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                       </span>
                                     </Fragment>
                                   ) : (
                                     <span className="amount">
-                                      {(finalProductPrice*1000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}
+                                      {(finalProductPrice * 1000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
                                     </span>
                                   )}
                                 </td>
 
                                 <td className="product-wishlist-cart">
-                                  { wishlistItem.quantity &&
+                                  {wishlistItem.quantity &&
                                     wishlistItem.quantity > 0 ? (
                                     <button
                                       onClick={() =>
@@ -137,7 +137,7 @@ const Wishlist = ({
                                       }
                                       className={
                                         cartItem !== undefined &&
-                                        cartItem.quantity > 0
+                                          cartItem.quantity > 0
                                           ? "active"
                                           : ""
                                       }
@@ -152,16 +152,16 @@ const Wishlist = ({
                                       }
                                     >
                                       {cartItem !== undefined &&
-                                      cartItem.quantity > 0
+                                        cartItem.quantity > 0
                                         ? "Added"
                                         : "Thêm vào cart"}
                                     </button>
-                                   ) : (
+                                  ) : (
                                     <button disabled className="active">
                                       Hết hàng
                                     </button>
                                   )
-                                }
+                                  }
                                 </td>
 
                                 <td className="product-remove">
@@ -211,7 +211,7 @@ const Wishlist = ({
                     <div className="item-empty-area__text">
                       Không có sản phẩm trong wishlist <br />{" "}
                       <Link to={process.env.PUBLIC_URL + "/shop"}>
-                       Thêm Sản Phẩm
+                        Thêm Sản Phẩm
                       </Link>
                     </div>
                   </div>
