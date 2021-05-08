@@ -66,8 +66,7 @@ const LoginRegister = ({ match, location, login, register, userLogin, history, m
             <div className="row">
               <div className="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div className="login-register-wrapper">
-                  {/* <Tab.Container defaultActiveKey={tab && tab == 1 ? "login" : "register"}> */}
-                  <Tab.Container defaultActiveKey="login">
+                  <Tab.Container defaultActiveKey={tab && tab == 1 ? "login" : "register"}>
                     <Nav variant="pills" className="login-register-tab-list">
                       <Nav.Item>
                         <Nav.Link eventKey="login" id="dangnhap">

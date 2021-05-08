@@ -54,7 +54,7 @@ const IconGroup = ({
             <i className="pe-7s-star" />
           </Link>
           :
-          <Link to={process.env.PUBLIC_URL + "/login-register"} className="account-setting-active">
+          <Link to={process.env.PUBLIC_URL + "/login-register/1"} className="account-setting-active">
             <i className="pe-7s-user-female" />
           </Link>
         }

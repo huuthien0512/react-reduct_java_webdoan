@@ -371,7 +371,7 @@ const MobileNavMenu = ({ strings }) => {
               </Link>
             </li>
             <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>
+              <Link to={process.env.PUBLIC_URL + "/login-register/1"}>
                 {strings["login_register"]}
               </Link>
             </li>
